@@ -1,0 +1,38 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav-container {
+  height: calc(205vh - 115vh);
+}
+
+mat-sidenav {
+  width: 250px;
+  background-color: #eee;
+  border: 1px solid #ffffff;
+  box-shadow: -5px 15px 5px 10px rgba(60, 60, 60, 0.2), -5px 0 5px -5px rgba(60, 60, 60, 0.3), -5px 0 5px -5px rgba(139, 139, 139, 0.4) !important;
+}
+
+mat-toolbar,
+mat-sidenav {
+  background-color: #4008DE;
+  color: #ffffff;
+}
+
+mat-button a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 20px auto;
+  max-height: 35px;
+  line-height: 35px;
+}
+
+mat-list-item button {
+  color: #ffffff;
+}
+
+mat-list-item button:hover {
+  background-color: #ffffff;
+  color: #333333;
+}
