@@ -17,7 +17,7 @@
   font-size: 30px;
 }
 
-.home-content {
+.home-content-top {
   position: absolute;
   top: 70px;
   left: 0px;
@@ -32,13 +32,43 @@
   box-shadow: -5px 15px 5px 10px rgba(60, 60, 60, 0.2), -5px 0 5px -5px rgba(60, 60, 60, 0.3), -5px 0 5px -5px rgba(139, 139, 139, 0.4) !important;
 }
 
-.home-content h3 {
+.home-content-top h3 {
   font-size: 17px;
   margin-top: 10px;
 }
 
-.home-content hr {
+.home-content-top hr {
   border: 2px solid red;
   width: 100px;
   margin: 0 auto;
+}
+
+.home-content-center {
+  margin: 30px 60px;
+}
+
+.home-content-left {
+  border: 1px solid #ccc;
+  width: 300px;
+  height: auto;
+  font-size: 17px;
+}
+
+.home-content-left-frontend-title,
+.home-content-left-backend-title {
+  font-weight: bold;
+  text-decoration: underline;
+  line-height: 40px;
+}
+.home-content-left-backend-name {
+  margin-left: 20px;
+  line-height: 30px;
+}
+.home-content-left-frontend {
+  background-color: red;
+}
+
+.home-content-left-backend {
+  background-color: blue;
+  margin-top: 50px;
 }
