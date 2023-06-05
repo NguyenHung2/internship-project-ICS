@@ -16,7 +16,12 @@ import { QuanlygoiComponent } from './modules/quanlygoi/quanlygoi.component';
 import { NangcapthietbiComponent } from './modules/nangcapthietbi/nangcapthietbi.component';
 import { NhatkyComponent } from './modules/nhatky/nhatky.component';
 import { HomeComponent } from './modules/home/home.component';
-
+import { LoginComponent } from './auth/login/login.component';
+import { MainLayoutComponent } from './layouts/main_layout.component';
+import { LogoutComponent } from './auth/logout/logout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { httpInterceptorProviders } from './data/_helpers/http.interceptor';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,15 +35,21 @@ import { HomeComponent } from './modules/home/home.component';
     QuanlygoiComponent,
     NangcapthietbiComponent,
     NhatkyComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    MainLayoutComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

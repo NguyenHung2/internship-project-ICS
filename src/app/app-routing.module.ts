@@ -8,20 +8,38 @@ import { NangcapthietbiComponent } from './modules/nangcapthietbi/nangcapthietbi
 import { NhatkyComponent } from './modules/nhatky/nhatky.component';
 import { HomeComponent } from './modules/home/home.component';
 import { QuanlysubnetComponent } from './modules/danhmuc/quanlysubnet/quanlysubnet.component';
+import { MainLayoutComponent } from './layouts/main_layout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { LogoutComponent } from './auth/logout/logout.component';
+
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent,},
-  {path: 'dashboard', component: DashboardComponent,},
-  {path: 'thietbi', component: ThietbiComponent},
-  {path: 'nentang', component: NentangComponent},
-  {path: 'quanlysubnet', component: QuanlysubnetComponent},
-  {path: 'quanlygoi', component: QuanlygoiComponent},
-  {path: 'nangcapthietbi', component: NangcapthietbiComponent},
-  {path: 'nhatky', component: NhatkyComponent},
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'thietbi', component: ThietbiComponent },
+      { path: 'nentang', component: NentangComponent },
+      { path: 'quanlysubnet', component: QuanlysubnetComponent },
+      { path: 'quanlygoi', component: QuanlygoiComponent },
+      { path: 'nangcapthietbi', component: NangcapthietbiComponent },
+      { path: 'nhatky', component: NhatkyComponent },
+    ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+  }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
