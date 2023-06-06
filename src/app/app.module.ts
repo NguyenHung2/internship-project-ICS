@@ -16,6 +16,8 @@ import { QuanlygoiComponent } from './modules/quanlygoi/quanlygoi.component';
 import { NangcapthietbiComponent } from './modules/nangcapthietbi/nangcapthietbi.component';
 import { NhatkyComponent } from './modules/nhatky/nhatky.component';
 import { HomeComponent } from './modules/home/home.component';
+import { LoginComponent } from './auth/login/login.component';
+import { MainLayoutComponent } from './layouts/main_layout.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { HomeComponent } from './modules/home/home.component';
     QuanlygoiComponent,
     NangcapthietbiComponent,
     NhatkyComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
