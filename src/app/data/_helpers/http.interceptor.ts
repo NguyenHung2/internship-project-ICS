@@ -3,7 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS
 import { Observable, throwError } from 'rxjs';
 
 import { StorageService } from '../_services/storage.service';
-
+//cấu hình author
 const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
