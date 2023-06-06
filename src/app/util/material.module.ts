@@ -11,6 +11,15 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -24,7 +33,14 @@ import { MatInputModule } from '@angular/material/input';
     MatMenuModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatInputModule
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    FormsModule,
+    HttpClientModule
+
   ],
   exports: [
     MatToolbarModule,
@@ -36,7 +52,15 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     MatMenuModule,
     MatExpansionModule,
-    MatInputModule
+
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    FormsModule,
+    HttpClientModule
+
   ]
 })
 export class MaterialModule { }

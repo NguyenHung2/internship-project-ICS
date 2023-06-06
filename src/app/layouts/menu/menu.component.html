@@ -1,52 +1,49 @@
 
-<mat-sidenav-container>
-  <mat-sidenav [(opened)]="opened" mode="side" [class.mat-elevation-z4]="true">
-    <mat-list>
-      <mat-list-item>
-        <a routerLink="/home">
-          <button mat-button><mat-icon>home</mat-icon> TRANG CHỦ</button>
-        </a>
-    </mat-list-item>
-      <mat-list-item>
-          <a routerLink="/dashboard">
-            <button mat-button><mat-icon>dashboard</mat-icon> DASHBOARD</button>
-          </a>
-      </mat-list-item>
-      <mat-expansion-panel >
-        <mat-expansion-panel-header>
-            <mat-icon>category</mat-icon><span>DANH MỤC</span>
-        </mat-expansion-panel-header>
-        <mat-nav-list>
-            <a mat-list-item routerLink="/thietbi">
-                <span>THIẾT BỊ</span>
-            </a>
-            <a mat-list-item routerLink="/nentang">
-                <mat-icon>keyboard_arrow_down</mat-icon><span>NỀN TẢNG</span>
-            </a>
-            <a mat-list-item routerLink="/quanlysubnet">
-              <span>QUẢN LÝ SUBNET</span>
-          </a>
-        </mat-nav-list>
-    </mat-expansion-panel>
-      <mat-list-item>
-          <a routerLink="/quanlygoi">
-            <button mat-button><mat-icon>cell_tower</mat-icon> QUẢN LÝ GÓI</button>
-          </a>
-      </mat-list-item>
-      <mat-list-item>
-          <a routerLink="/nangcapthietbi">
-            <button mat-button><mat-icon>upgrade</mat-icon> NÂNG CẤP THIẾT BỊ</button>
-          </a>
-      </mat-list-item>
-      <mat-list-item>
-          <a routerLink="/nhatky">
-            <button mat-button><mat-icon>online_prediction</mat-icon> NHẬT KÝ</button>
-          </a>
-      </mat-list-item>
-    </mat-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet>
-    </router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<mat-list>
+  <div style="height: 70px; border-bottom: 1px solid #ffffff; text-align: center;">
+    <img src="../../../assets/logo-VNPTIT.png" alt="" width="200px">
+  </div>
+  <mat-list-item>
+    <a routerLink="/home" routerLinkActive="active-link">
+      <mat-icon>home</mat-icon> <span>TRANG CHỦ</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item>
+    <a routerLink="/dashboard" routerLinkActive="active-link">
+      <mat-icon>dashboard</mat-icon> <span>DASHBOARD</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item>
+    <a (click)="toggleMenu()" routerLinkActive="active-link">
+      <mat-icon>category</mat-icon> <span>DANH MỤC</span>
+      <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
+      <mat-icon *ngIf="showMenu">expand_more</mat-icon>
+    </a>
+  </mat-list-item>
+  <mat-nav-list class="sidenav-submenu" *ngIf="showMenu">
+    <a mat-list-item routerLink="/thietbi" routerLinkActive="active-link">
+      <span>THIẾT BỊ</span>
+    </a>
+    <a mat-list-item routerLink="/nentang" routerLinkActive="active-link">
+      <span>NỀN TẢNG</span>
+    </a>
+    <a mat-list-item routerLink="/quanlysubnet" routerLinkActive="active-link">
+      <span>QUẢN LÝ SUBNET</span>
+    </a>
+  </mat-nav-list>
+  <mat-list-item>
+    <a routerLink="/quanlygoi" routerLinkActive="active-link">
+      <mat-icon>cell_tower</mat-icon> <span>QUẢN LÝ GÓI</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item>
+    <a routerLink="/nangcapthietbi" routerLinkActive="active-link">
+      <mat-icon>upgrade</mat-icon> <span>NÂNG CẤP THIẾT BỊ</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item>
+    <a routerLink="/nhatky" routerLinkActive="active-link">
+      <mat-icon>online_prediction</mat-icon> <span>NHẬT KÝ</span>
+    </a>
+  </mat-list-item>
+</mat-list>

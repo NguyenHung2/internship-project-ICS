@@ -1,34 +1,37 @@
+
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { StorageService } from '../data/_services/storage.service';
 
 
 @Component({
   selector: 'app-main-layout',
-  template: '<app-header></app-header><app-menu></app-menu>',
+  template: '<app-header></app-header>',
+  styles: [`
+  .mat-toolbar.mat-dark {
+      background: #000;
+      color: #fff;
+  }
+  app-menu {
+      position: absolute;
+      width: 100%;
+      top: 4rem;
+      z-index: 1;
+  }
+  `]
 })
 export class MainLayoutComponent {
+  title = 'angularmaterial';
+  private roles: string[] = [];
   isLoggedIn = false;
+  username?: string;
   eventBusSub?: Subscription;
 
   constructor(
-    private storageService: StorageService,
     private router: Router
-  ) {}
+  ) { }
   ngOnInit(): void {
-    // this.isLoggedIn = this.storageService.isLoggedIn();
-    // //chưa đăng nhập sẽ đưa về login
-    // if (this.isLoggedIn) {
-    //   const user = this.storageService.getUser();
-    // }else{
-    //   this.router.navigate(['/login']);
-    // }
-  }
 
-  logout(): void {
-    this.storageService.signOut();
-    window.location.reload();
   }
 
 }

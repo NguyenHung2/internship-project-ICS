@@ -1,3 +1,4 @@
+
 import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/data/_services/auth.service';
@@ -71,4 +72,4 @@ export class LoginComponent implements OnInit{
   @Input() error: string | null | undefined;
 
   @Output() submitEM = new EventEmitter();
-}
+

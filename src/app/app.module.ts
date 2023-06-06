@@ -18,10 +18,12 @@ import { NhatkyComponent } from './modules/nhatky/nhatky.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { MainLayoutComponent } from './layouts/main_layout.component';
+
 import { LogoutComponent } from './auth/logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from './data/_helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,

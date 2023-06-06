@@ -10,7 +10,9 @@ import { HomeComponent } from './modules/home/home.component';
 import { QuanlysubnetComponent } from './modules/danhmuc/quanlysubnet/quanlysubnet.component';
 import { MainLayoutComponent } from './layouts/main_layout.component';
 import { LoginComponent } from './auth/login/login.component';
+
 import { LogoutComponent } from './auth/logout/logout.component';
+
 
 
 const routes: Routes = [
@@ -32,10 +34,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+
   },
   {
     path: 'logout',
     component: LogoutComponent,
+
   }
 ];
 @NgModule({

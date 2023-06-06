@@ -1,10 +1,9 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <button mat-icon-button (click)="opened=!opened" class="example-icon"
-      aria-label="Example icon-button with menu icon">
+    <!-- <img src="../../../assets/logo-VNPTIT.png" alt="" width="180px" style="border-right: 1px solid #ffffff; padding: 10px;"> -->
+    <button mat-icon-button class="example-icon" (click)="opened=!opened">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>VNPT - ITKV5</span>
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon"
     aria-label="Example icon-button with share icon"
@@ -14,3 +13,14 @@
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
+
+
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [(opened)]="opened">
+    <app-menu></app-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
