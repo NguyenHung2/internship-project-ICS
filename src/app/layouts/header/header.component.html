@@ -1,0 +1,23 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [(opened)]="opened">
+    <app-menu></app-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <button class="toggle-icon" (click)="opened=!opened">
+          <mat-icon class="toggle">menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+          routerLink="logout">
+          <mat-icon class="logout">logout</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card>
+      <app-breadcrumbs></app-breadcrumbs>
+    </mat-card>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
