@@ -1,1 +1,39 @@
-<p>nangcapthietbi works!</p>
+<div class="container">
+  <div class="card-container">
+    <mat-card class="mat-elevation-z8">
+      <div class="form-container">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="form-field">
+            <mat-label>Chọn thiết bị</mat-label>
+            <mat-select formControlName="selectedDevice" required>
+              <mat-option *ngFor="let device of deviceList" [value]="device.id">{{ device.name }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="myForm.get('selectedDevice')?.errors?.['required'] && myForm.get('selectedDevice')?.touched">
+              Vui lòng chọn thiết bị
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <mat-label>Chọn gói nâng cấp</mat-label>
+            <mat-select formControlName="selectedGoi" required>
+              <mat-option *ngFor="let goi of goiList" [value]="goi.id">{{ goi.tenGoi }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="myForm.get('selectedGoi')?.errors?.['required'] && myForm.get('selectedGoi')?.touched">
+              Vui lòng chọn gói nâng cấp
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button type="submit" color="primary">Nâng cấp</button>
+        </form>
+      </div>
+    </mat-card>
+
+    <mat-card class="mat-elevation-z8">
+      <!-- Hiển thị chi tiết thiết bị và gói nâng cấp đã chọn -->
+      <div class="detail-container">
+        <p>Thiết bị đã chọn: {{ deviceName }}</p>
+        <p>Gói nâng cấp đã chọn: {{ goiName }}</p>
+      </div>
+    </mat-card>
+  </div>
+</div>

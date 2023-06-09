@@ -69,10 +69,6 @@ export class DashboardComponent {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-    // Create 100 users
-    // const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-    // console.log(this.posts);
-    // console.log('users', users);
   }
 
   applyFilter(event: Event) {

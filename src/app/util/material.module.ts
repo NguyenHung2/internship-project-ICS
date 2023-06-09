@@ -20,6 +20,10 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatGridListModule } from '@angular/material/grid-list';
+//show dialog
+import {MatDialogModule} from "@angular/material/dialog"
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -43,6 +47,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     HttpClientModule,
 
     MatGridListModule,
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   exports: [
     MatToolbarModule,
@@ -63,7 +70,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
     FormsModule,
     HttpClientModule,
 
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

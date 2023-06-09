@@ -28,6 +28,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { BreadcrumbsComponent } from './layouts/breadcrumbs/breadcrumbs.component';
+import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
 /** =================== */
 
 @NgModule({
@@ -48,6 +49,7 @@ import { BreadcrumbsComponent } from './layouts/breadcrumbs/breadcrumbs.componen
     MainLayoutComponent,
     LogoutComponent,
     BreadcrumbsComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
