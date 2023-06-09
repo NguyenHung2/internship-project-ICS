@@ -9,7 +9,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   opened = true;
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor() { }
   ngOnInit(): void {
 
   }

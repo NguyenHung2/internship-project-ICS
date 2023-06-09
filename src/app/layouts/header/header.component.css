@@ -2,14 +2,12 @@
   flex: 1 1 auto;
 }
 
-mat-toolbar {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  height: 60px;
+mat-sidenav-container {
+  min-height: 100vh;
 }
 
-mat-sidenav-container {
-  height: 100vh;
+mat-toolbar {
+  background-color: #ffffff;
 }
 
 mat-sidenav {

@@ -23,13 +23,13 @@ import { LogoutComponent } from './auth/logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from './data/_helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
-/** Bị dư 3 phần import */
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+
 import { BreadcrumbsComponent } from './layouts/breadcrumbs/breadcrumbs.component';
+
 import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
-/** =================== */
+
+import { BackToTopComponent } from './layouts/back-to-top/back-to-top.component';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +50,8 @@ import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
     LogoutComponent,
     BreadcrumbsComponent,
     PopupComponent
+    BackToTopComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -58,10 +60,7 @@ import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
+    HttpClientModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

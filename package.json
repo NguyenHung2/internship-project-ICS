@@ -20,7 +20,13 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+// khanh29
     "angular-breadcrumb": "^0.5.0",
+//
+    "angular-crumbs": "^3.0.1",
+    "mat-breadcrumb": "^1.0.1",
+    "ngx-scrolltop": "^6.0.0",
+
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",

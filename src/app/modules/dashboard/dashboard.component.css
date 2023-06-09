@@ -1,5 +1,5 @@
 .container {
-  margin: 50px;
+  margin: 20px;
 }
 table {
   width: 100%;
@@ -20,4 +20,18 @@ table {
 }
 .th-right{
   text-align: right;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+.mat-mdc-table .mdc-data-table__header-row {
+  background-color: #6c6b68;
+}
+
+.mdc-data-table__header-cell {
+  font-weight: 700;
+  color: #ffffff;
 }
