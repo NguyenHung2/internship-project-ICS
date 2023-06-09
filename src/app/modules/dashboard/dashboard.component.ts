@@ -2,13 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { TableService } from './table.service';
+import { TableService } from '../table.service';
 
 export interface UserData {
   id: string;
   userId: string;
   title: any;
-  body: any;
+  // body: any;
 }
 
 /** Constants used to fill up our data base. */
@@ -53,7 +53,7 @@ const NAMES: string[] = [
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  displayedColumns: string[] = ['id', 'userId', 'title', 'body'];
+  displayedColumns: string[] = ['id', 'userId', 'title'];
   dataSource!: MatTableDataSource<UserData>;
   posts: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -97,6 +97,6 @@ function createNewUser(id: number): UserData {
     id: id.toString(),
     userId: name,
     title: Math.round(Math.random() * 100).toString(),
-    body: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
+    // body: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
   };
 }

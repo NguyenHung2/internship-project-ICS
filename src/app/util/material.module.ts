@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-/**Dung cho phan bang */
+/** Table */
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -20,6 +20,10 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatGridListModule } from '@angular/material/grid-list';
+
+/** Back-to-top + MatIconModule + MatButtonModule*/
+import { ScrollingModule } from '@angular/cdk/scrolling';
+/** ================== */
 
 @NgModule({
   declarations: [],
@@ -43,6 +47,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     HttpClientModule,
 
     MatGridListModule,
+    ScrollingModule
   ],
   exports: [
     MatToolbarModule,
@@ -63,7 +68,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     FormsModule,
     HttpClientModule,
 
-    MatGridListModule
+    MatGridListModule,
+    ScrollingModule
   ]
 })
 export class MaterialModule { }

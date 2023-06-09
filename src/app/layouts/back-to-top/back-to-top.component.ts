@@ -1,12 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, OnInit, Inject } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-quanlygoi',
-  templateUrl: './quanlygoi.component.html',
-  styleUrls: ['./quanlygoi.component.css']
+  selector: 'app-back-to-top',
+  templateUrl: './back-to-top.component.html',
+  styleUrls: ['./back-to-top.component.css']
 })
-export class QuanlygoiComponent implements OnInit {
+export class BackToTopComponent implements OnInit {
 
   windowScrolled!: boolean;
   constructor(@Inject(DOCUMENT) private document: Document) { }
