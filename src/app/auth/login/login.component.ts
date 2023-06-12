@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/data/_services/auth.service';
 import { StorageService } from 'src/app/data/_services/storage.service';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 //cần import MatInputModule, MatFormFieldModule vào material
 @Component({
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit{
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router,
+    private toastr: ToastrService
   ) { }
   //kiểm tra đã đăng nhập hay chưa
   ngOnInit(): void {
@@ -33,7 +35,6 @@ export class LoginComponent implements OnInit{
     username: null,
     password: null
   };
-
   submit() {
     const { username, password } = this.form;
     this.authService.login(username, password).subscribe({
@@ -41,36 +42,27 @@ export class LoginComponent implements OnInit{
         this.storageService.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.reloadPage();
+       this.router.navigate(['/home'])
+       this.toastr.success("Đăng nhập thành công")
       },
       error: err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-        console.log(err.error.message);
-
         if (err.status === 0) {
-          // Lỗi kết nối server
-          alert("Lỗi server")
+          this.errorMessage = "Lỗi server!";
+          this.isLoginFailed = true;
         } else if(err.error.message === "INVALID_USERNAME")
         {
-          alert("Sai username")
+          this.errorMessage = "Sai tên tài khoản!";
+          this.isLoginFailed = true;
         }else if(err.error.message === "INVALID_PASSWORD")
         {
-          alert("Sai mật khẩu")
+          this.errorMessage = "Sai mật khẩu!";
+          this.isLoginFailed = true;
         }else{
-          // Lỗi phản hồi từ server khác
+          this.errorMessage = "Lỗi rồi!";
+          this.isLoginFailed = true;
           this.errorMessage = err.error.message;
         }
-        this.isLoginFailed = true;
       }
     });
-
   }
-  reloadPage(): void {
-    window.location.reload();
-  }
-  @Input() error: string | null | undefined;
-
-  @Output() submitEM = new EventEmitter();
-
 }

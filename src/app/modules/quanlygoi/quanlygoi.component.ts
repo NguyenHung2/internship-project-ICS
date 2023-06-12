@@ -13,7 +13,7 @@ export interface GoiNangCap {
   moTa: string;
   phienBan: string;
   nenTang: any;
-  nenTangId: number;
+  nenTangId: number; 
 }
 
 @Component({

@@ -14,5 +14,7 @@ export class NhatKyService {
   ThemNhatKy(id: any, data: any) {
     return this.http.put(`${API_URL}nhatky/${id}`, data);
   }
-
+  LayNhatKy(id:any): Observable<any> {
+    return this.http.get(`${API_URL}nhatky/${id}`);
+  }
 }

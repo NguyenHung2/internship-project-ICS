@@ -2,14 +2,13 @@
   <div class="card-container">
     <mat-card class="mat-elevation-z8">
       <div class="form-container">
-        <form [formGroup]="myForm">
+        <form [formGroup]="myForm" >
           <mat-form-field class="form-field">
             <mat-label>Chọn thiết bị</mat-label>
             <mat-select formControlName="selectedDevice" required>
               <mat-option *ngFor="let device of deviceList" [value]="device.id">{{ device.name }}</mat-option>
             </mat-select>
-            <mat-error
-              *ngIf="myForm.get('selectedDevice')?.errors?.['required'] && myForm.get('selectedDevice')?.touched">
+            <mat-error *ngIf="myForm.get('selectedDevice')?.errors?.['required'] && myForm.get('selectedDevice')?.touched">
               Vui lòng chọn thiết bị
             </mat-error>
           </mat-form-field>
@@ -23,8 +22,8 @@
               Vui lòng chọn gói nâng cấp
             </mat-error>
           </mat-form-field>
-          <button mat-raised-button type="submit" color="primary">Nâng cấp</button>
 
+          <button mat-raised-button type="submit" color="primary">Nâng cấp</button>
         </form>
       </div>
     </mat-card>
@@ -33,17 +32,16 @@
       <!-- Hiển thị chi tiết thiết bị và gói nâng cấp đã chọn -->
       <div class="detail-container">
         <p><strong>Thông tin thiết bị:</strong></p>
-        <p>ID: {{ device?.id }}</p>
         <p>Tên: {{ device?.name }}</p>
+        <p>Địa chỉ: {{ device?.location }}</p>
+        <p>Số điện thoại: {{ device?.phone }}</p>
         <br>
         <p><strong>Thông tin gói nâng cấp:</strong></p>
-        <p>ID: {{ goi?.id }}</p>
         <p>Tên gói: {{ goi?.tenGoi }}</p>
         <p>Nơi lưu: {{ goi?.noiLuu }}</p>
         <p>Mô tả: {{ goi?.moTa }}</p>
         <p>Phiên bản: {{ goi?.phienBan }}</p>
-        <p>Nền tảng: {{ goi?.nenTang }}</p>
-        <p>ID nền tảng: {{ goi?.nenTangId }}</p>
+        <p>Nền tảng: {{ goi?.nenTang.tenNenTang }}</p>
       </div>
     </mat-card>
   </div>

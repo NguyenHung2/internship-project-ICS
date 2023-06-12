@@ -29,8 +29,9 @@ import { BreadcrumbsComponent } from './layouts/breadcrumbs/breadcrumbs.componen
 import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
 
 import { BackToTopComponent } from './layouts/back-to-top/back-to-top.component';
-import { TbChitietComponent } from './modules/danhmuc/thietbi/tb-chitiet/tb-chitiet.component';
-
+//thông báo
+import { ToastrModule } from 'ngx-toastr';
+import { InfoComponent } from './modules/nhatky/info/info.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { TbChitietComponent } from './modules/danhmuc/thietbi/tb-chitiet/tb-chit
     BreadcrumbsComponent,
     PopupComponent,
     BackToTopComponent,
-    TbChitietComponent,
+    InfoComponent,
 
   ],
   imports: [
@@ -62,7 +63,10 @@ import { TbChitietComponent } from './modules/danhmuc/thietbi/tb-chitiet/tb-chit
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 1500 // Thiết lập thời gian hiển thị là 1,5 giây
+    }),
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
