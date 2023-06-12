@@ -1,7 +1,17 @@
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+
 mat-card {
   background-color: #4008DE;
   border: 1px solid #ccc;
-  height: 60px;
+  height: 70px;
   padding: 5px 0;
 }
 
@@ -11,12 +21,28 @@ mat-card-header {
 
 mat-card-title {
   color: #ffffff;
-  font-size: 25px;
+  font-size: 20px;
   padding-left: 40px;
 }
 
-hr {
-  margin-top: 2px;
-  /* width: 50px; */
-  border: 2px solid #fff;
+.mat-list {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+}
+
+.mat-item {
+  font-size: 13px;
+  font-weight: 700px;
+  align-items: center;
+  text-align: center;
+  margin-right: 20px;
+}
+
+mat-icon {
+  font-size: 20px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }

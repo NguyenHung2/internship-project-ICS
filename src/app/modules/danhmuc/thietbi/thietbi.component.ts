@@ -3,8 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableService } from '../../table.service';
-import { TbChitietComponent } from './tb-chitiet/tb-chitiet.component';
-import { MatDialog } from '@angular/material/dialog';
 
 export interface UserData {
   id: string;
@@ -33,7 +31,6 @@ const FRUITS: string[] = [
   'lime',
   'pomegranate',
   'pineapple',
-  'actions'
 ];
 const NAMES: string[] = [
   'Maia',
@@ -69,13 +66,13 @@ const NAMES: string[] = [
 export class ThietbiComponent {
   displayedColumns: string[] = ['id', 'userId', 'title', 'body', 'kinhDo', 'viDo',
     'donViHanhChinh', 'soDienThoai', 'soLoa', 'ghiChu', 'activated', 'delete',
-    'maModelThietBi', 'maLoaiThietBi', 'actions'];
+    'maModelThietBi', 'maLoaiThietBi'];
   dataSource!: MatTableDataSource<UserData>;
   posts: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private service: TableService, private dialog: MatDialog) {
+  constructor(private service: TableService) {
     this.service.getData().subscribe((data) => {
       console.log(data);
       this.posts = data;
@@ -98,11 +95,6 @@ export class ThietbiComponent {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  viewDetails(row: UserData): void {
-    // Xử lý khi nhấp vào nút "Xem chi tiết"
-    console.log('Xem chi tiết:', row);
   }
 }
 

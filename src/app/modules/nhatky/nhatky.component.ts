@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import * as XLSX from 'xlsx';
 import * as XLSXStyle from 'xlsx-js-style';
+import { InfoComponent } from './info/info.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface NhatKyData {
   id: number;
@@ -26,13 +28,11 @@ export interface NhatKyData {
 export class NhatkyComponent {
   displayedColumns: string[] = [
     'stt',
-    'thoiDiemNangCap',
     'goiNangCap',
     'nguoiNangCap',
-    'trangThai',
-    'thoiDiemNhanLenh',
-    'thoiDiemTcTb',
+    'thoiDiemNangCap',
     'lyDo',
+    'action',
   ];
   dataSource!: MatTableDataSource<NhatKyData>;
   dataExel: any;
@@ -42,7 +42,8 @@ export class NhatkyComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private http: HttpClient, private nhatKyService: NhatKyService) {
+  constructor(private http: HttpClient, private nhatKyService: NhatKyService,
+    private dialog: MatDialog) {
     this.fetchNhatKyData();
   }
 
@@ -55,7 +56,11 @@ export class NhatkyComponent {
 
       // Tạo danh sách các năm từ trường thoiDiemNangCap
       this.namOptions = Array.from(
-        new Set(data.map((item: { thoiDiemNangCap: string | number | Date; }) => new Date(item.thoiDiemNangCap).getFullYear()))
+        new Set(
+          data.map((item: { thoiDiemNangCap: string | number | Date }) =>
+            new Date(item.thoiDiemNangCap).getFullYear()
+          )
+        )
       );
 
       if (this.selectedYear !== 'của tất cả năm') {
@@ -66,12 +71,14 @@ export class NhatkyComponent {
 
   filterByYear(year: string) {
     this.selectedYear = year;
-    console.log(this.selectedYear)
+    console.log(this.selectedYear);
     if (this.selectedYear === 'của tất cả năm') {
       this.dataSource.filter = '';
     } else {
       this.dataSource.filterPredicate = (data: NhatKyData, filter: string) => {
-        const yearFilter = new Date(data.thoiDiemNangCap).getFullYear().toString();
+        const yearFilter = new Date(data.thoiDiemNangCap)
+          .getFullYear()
+          .toString();
         return yearFilter === filter;
       };
       this.dataSource.filter = this.selectedYear.toString();
@@ -93,12 +100,32 @@ export class NhatkyComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-
+  //đổi màu theo dòng
+  getRowStyle(row: NhatKyData) {
+    if (row.trangThai === 'THANH_CONG') {
+      return { 'background-color': '#98FB98' };
+    } else if (row.trangThai === 'THAT_BAI') {
+      return { 'background-color': '#FFF68F' };
+    } else {
+      return {};
+    }
+  }
+  //hiển thị popup thông tin chi tiết
+  info(id:any) {
+    this.dialog.open(InfoComponent, {
+      width: '400px',
+      data: {  id: id/* Truyền dữ liệu cần thiết vào đây */ },
+    });
+  }
   // Export excel
   exportToExcel(): void {
     const element = document.getElementById('season-tble');
     const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    worksheet['A1'] = { t: 's', v: 'Nhật Ký Nâng Cấp', s: { alignment: { horizontal: 'center' }, font: { bold: true } } };
+    worksheet['A1'] = {
+      t: 's',
+      v: 'Nhật Ký Nâng Cấp',
+      s: { alignment: { horizontal: 'center' }, font: { bold: true } },
+    };
 
     for (let col = 0; col <= 7; col++) {
       const cell = XLSX.utils.encode_cell({ r: 1, c: col });
@@ -106,7 +133,7 @@ export class NhatkyComponent {
     }
 
     const columnWidths = [
-      { wch: 5 },  // A
+      { wch: 5 }, // A
       { wch: 15 }, // B
       { wch: 15 }, // C
       { wch: 20 }, // D

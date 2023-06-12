@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutComponent } from 'src/app/auth/logout/logout.component';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +11,16 @@ import { Component, Inject, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   opened = true;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
   ngOnInit(): void {
 
+  }
+  //thêm mở dialog để đăng xuất 
+  openDialog(): void {
+    this.dialog.open(LogoutComponent, {
+      width: '350px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+    });
   }
 }

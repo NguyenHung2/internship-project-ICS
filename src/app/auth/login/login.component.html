@@ -20,7 +20,7 @@
             [ngClass]="{ 'mat-invalid': f.submitted && username.invalid }"
           />
           <mat-error *ngIf="username.invalid && f.submitted">
-            Username is required!
+            Tên đăng nhập không được trống!
           </mat-error>
       </mat-form-field>
     </p>
@@ -33,14 +33,16 @@
             name="password"
             [(ngModel)]="form.password"
             required
-            minlength="6"
             #password="ngModel"
             [ngClass]="{ 'mat-invalid': f.submitted && password.invalid }"
           />
           <mat-error *ngIf="password.invalid && f.submitted">
-            Password is required!
+            Mật khẩu không được trống!
           </mat-error>
       </mat-form-field>
+      <p *ngIf="isLoginFailed" class="error">
+        {{ errorMessage }}
+      </p>
       <p>
         <div class="button">
           <button type="submit" mat-raised-button color="warn">Đăng nhập</button>

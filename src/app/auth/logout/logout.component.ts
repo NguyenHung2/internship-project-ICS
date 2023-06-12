@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import {  ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/data/_services/storage.service';
 
 @Component({
@@ -9,11 +11,16 @@ import { StorageService } from 'src/app/data/_services/storage.service';
 })
 export class LogoutComponent {
   constructor(
-    private storageService: StorageService,
-    private router: Router
+    public dialogRef: MatDialogRef<LogoutComponent>,
+        private storageService: StorageService,
+        private router: Router, private toastr: ToastrService
   ) {}
-  ngOnInit(): void {
+  closedialog() {
+    this.dialogRef.close('Closed using function');
+  }
+  accept() {
     this.storageService.signOut();
     this.router.navigate(['/login']);
+    this.toastr.success("Bạn đã đăng xuất!")
   }
 }

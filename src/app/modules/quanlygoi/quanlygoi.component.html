@@ -1,11 +1,11 @@
 
 <div class="container">
   <mat-form-field>
-    <mat-label>Nhập nội dung tìm kiếm</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Tìm kiếm ..." #input>
+    <mat-label>Filter Table</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
   </mat-form-field>
   <button
-  style="float: right;"
+  style="margin-left: 60%"
   (click)="addGoi()"
   mat-raised-button
   color="primary"
@@ -51,7 +51,7 @@
         <td mat-cell *matCellDef="let row"> {{row.nenTang.tenNenTang}} </td>
       </ng-container>
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
           <button
             (click)="editGoi(element.id)"
@@ -60,13 +60,13 @@
           >
             Edit
           </button>
-          <!-- <button
+          <button
 
             mat-raised-button
             color="warn"
           >
             Delete
-          </button> -->
+          </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

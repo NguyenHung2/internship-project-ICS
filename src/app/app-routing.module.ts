@@ -20,7 +20,7 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: '', component: HomeComponent, data: { titulo: 'Trang chủ' } },
+      { path: '', component: HomeComponent, data: { titulo: 'Trang chủ' }},
       { path: 'home', component: HomeComponent, data: { titulo: 'Trang chủ', breadcrumbs: [{ label: 'Trang chủ', url: '/' }] } },
       { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard', breadcrumbs: [{ label: 'Dashboard', url: '/' }] } },
       { path: 'thietbi', component: ThietbiComponent, data: { titulo: 'Danh mục Thiết bị' } },

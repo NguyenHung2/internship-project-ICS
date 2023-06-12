@@ -25,10 +25,11 @@ mat-card {
 }
 
 .error {
-  padding: 16px;
-  width: 300px;
+  padding: 7px;
+  width: 330px;
   color: white;
   background-color: red;
+  font-size: 13px;
 }
 
 .button {
@@ -47,4 +48,5 @@ mat-card {
 .login-full-width {
   width: 100%;
 }
+
 
