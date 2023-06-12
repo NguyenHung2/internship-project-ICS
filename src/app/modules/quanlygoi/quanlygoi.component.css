@@ -1,6 +1,5 @@
-// khanh29
 .container {
-  margin: 50px;
+  margin: 20px;
 }
 table {
   width: 100%;
@@ -22,16 +21,17 @@ table {
 .th-right{
   text-align: right;
 }
-//hung
-.scroll-to-top {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  opacity: 0;
-  transition: all .2s ease-in-out;
- }
- .show-scrollTop {
-  opacity: 1;
-  transition: all .2s ease-in-out;
- }
 
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+.mat-mdc-table .mdc-data-table__header-row {
+  background-color: #6c6b68;
+}
+
+.mdc-data-table__header-cell {
+  font-weight: 700;
+  color: #ffffff;
+}

@@ -11,7 +11,7 @@ a {
 mat-card {
   background-color: #4008DE;
   border: 1px solid #ccc;
-  height: 70px;
+  height: 60px;
   padding: 5px 0;
 }
 
@@ -21,28 +21,11 @@ mat-card-header {
 
 mat-card-title {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 23px;
   padding-left: 40px;
 }
 
-.mat-list {
-  display: flex;
-  align-items: center;
-  margin-left: 50px;
-}
-
-.mat-item {
-  font-size: 13px;
-  font-weight: 700px;
-  align-items: center;
-  text-align: center;
-  margin-right: 20px;
-}
-
-mat-icon {
-  font-size: 20px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  text-align: center;
+hr{
+  border: 2px solid #ffffff;
+  margin-top: 2px;
 }
