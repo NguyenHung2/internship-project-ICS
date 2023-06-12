@@ -1,0 +1,22 @@
+mat-card {
+  background-color: #4008DE;
+  border: 1px solid #ccc;
+  height: 60px;
+  padding: 5px 0;
+}
+
+mat-card-header {
+  padding: 0;
+}
+
+mat-card-title {
+  color: #ffffff;
+  font-size: 25px;
+  padding-left: 40px;
+}
+
+hr {
+  margin-top: 2px;
+  /* width: 50px; */
+  border: 2px solid #fff;
+}

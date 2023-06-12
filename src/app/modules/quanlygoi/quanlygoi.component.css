@@ -1,0 +1,37 @@
+.container {
+  margin: 20px;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 40%;
+}
+
+
+
+.th-center{
+  text-align: center;
+}
+.th-left{
+  text-align: left;
+}
+.th-right{
+  text-align: right;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+.mat-mdc-table .mdc-data-table__header-row {
+  background-color: #6c6b68;
+}
+
+.mdc-data-table__header-cell {
+  font-weight: 700;
+  color: #ffffff;
+}

@@ -1,0 +1,59 @@
+<form [formGroup]="myform" (ngSubmit)="saveGoiNangCap()">
+  <h1 mat-dialog-title>{{ inputdata.title }}</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Tên gói</mat-label>
+      <input formControlName="tenGoi" matInput required>
+      <mat-error *ngIf="formControls.tenGoi.errors?.['required'] && formControls.tenGoi.touched">
+        Tên gói là bắt buộc
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tên file</mat-label>
+      <div class="file-input-container">
+        <input type="text" formControlName="noiLuu" matInput readonly>
+        <button mat-icon-button color="primary" class="file-action-button" (click)="downloadFile()">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+        <input #fileInput type="file" class="file-input" (change)="uploadFile(fileInput)">
+        <button mat-icon-button color="primary" class="file-action-button" (click)="fileInput.click()">
+          <mat-icon>cloud_upload</mat-icon>
+        </button>
+      </div>
+      <mat-error *ngIf="formControls.noiLuu.errors?.['required'] && formControls.noiLuu.touched">
+        Nơi lưu là bắt buộc
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Mô tả</mat-label>
+      <textarea formControlName="moTa" matInput required></textarea>
+      <mat-error *ngIf="formControls.moTa.errors?.['required'] && formControls.moTa.touched">
+        Mô tả là bắt buộc
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phiên bản</mat-label>
+      <input formControlName="phienBan" matInput required>
+      <mat-error *ngIf="formControls.phienBan.errors?.['required'] && formControls.phienBan.touched">
+        Phiên bản là bắt buộc
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nền tảng</mat-label>
+      <mat-select formControlName="nenTangId" required [(value)]="selectedNenTang">
+        <mat-option *ngFor="let nenTang of nenTangList" [value]="nenTang.id">
+          {{ nenTang.tenNenTang }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControls.nenTangId.errors?.['required'] && formControls.nenTangId.touched">
+        Nền tảng là bắt buộc
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button type="submit" color="primary">Lưu</button>
+    <button (click)="closePopup()" mat-raised-button color="warn">Đóng</button>
+  </div>
+</form>
