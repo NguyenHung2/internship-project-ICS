@@ -24,6 +24,7 @@ export interface thietBiData {
   maLoaiThietBi: string;
 }
 
+
 @Component({
   selector: 'app-thietbi',
   templateUrl: './thietbi.component.html',
@@ -49,6 +50,7 @@ export class ThietbiComponent {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+
   }
 
   applyFilter(event: Event) {
@@ -67,4 +69,5 @@ export class ThietbiComponent {
       data: { id: id/* Truyền dữ liệu cần thiết vào đây */ },
     });
   }
+
 }

@@ -34,6 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { InfoComponent } from './modules/nhatky/info/info.component';
 import { TbChitietComponent } from './modules/danhmuc/thietbi/tb-chitiet/tb-chitiet.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

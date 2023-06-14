@@ -1,7 +1,9 @@
+
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ThietbiService } from 'src/app/data/_services/thietbi.service';
 import { thietBiData } from '../thietbi.component';
+
 
 @Component({
   selector: 'app-tb-chitiet',

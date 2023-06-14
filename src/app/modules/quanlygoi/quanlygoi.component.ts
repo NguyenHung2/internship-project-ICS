@@ -15,6 +15,7 @@ export interface GoiNangCap {
   nenTangId: number;
 }
 
+
 @Component({
   selector: 'app-quanlygoi',
   templateUrl: './quanlygoi.component.html',
@@ -40,7 +41,6 @@ export class QuanlygoiComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource);
     });
   }
 

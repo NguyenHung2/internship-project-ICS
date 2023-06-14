@@ -25,6 +25,7 @@ export class NangcapthietbiComponent implements OnInit {
     private thietBiService: ThietbiService
   ) { }
 
+
   ngOnInit(): void {
     this.initializeForm();
     this.loadGoiList();
@@ -67,5 +68,6 @@ export class NangcapthietbiComponent implements OnInit {
     console.log(this.device)
     // Lấy thông tin gói nâng cấp từ danh sách gói nâng cấp dựa trên ID
     this.goi = this.goiList.find(item => item.id === selectedGoi);
+
   }
 }
