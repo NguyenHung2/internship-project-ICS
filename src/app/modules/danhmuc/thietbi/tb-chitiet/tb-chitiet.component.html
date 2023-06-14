@@ -1,1 +1,17 @@
-<p>tb-chitiet works!</p>
+
+<h1 mat-dialog-title>Thông tin chi tiết
+  <hr>
+</h1>
+
+<div mat-dialog-content>
+  <p><strong>Kinh độ:</strong> {{ thietbi?.kinhDo }}</p>
+  <p><strong>Vĩ độ:</strong> {{ thietbi?.viDo }}</p>
+  <p><strong>Đơn vị hành chính:</strong> {{ thietbi?.donViHanhChinh }}</p>
+  <p><strong>Ghi chú:</strong> {{ thietbi?.ghiChu }}</p>
+  <p><strong>Mã Model thiết bị:</strong> {{ thietbi?.maModelThietBi }}</p>
+  <p><strong>Mã loại thiết bị:</strong> {{ thietbi?.maLoaiThietBi }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="closePopup()">Đóng</button>
+</div>
+

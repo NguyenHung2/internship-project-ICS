@@ -1,4 +1,3 @@
-//khanh29
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -13,8 +12,9 @@ export interface GoiNangCap {
   moTa: string;
   phienBan: string;
   nenTang: any;
-  nenTangId: number; 
+  nenTangId: number;
 }
+
 
 @Component({
   selector: 'app-quanlygoi',

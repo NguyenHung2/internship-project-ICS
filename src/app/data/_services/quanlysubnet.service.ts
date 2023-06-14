@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ThietbiService {
+export class QuanLySubnetService {
   constructor(private http: HttpClient) {}
-  LayDsThietBi(): Observable<any> {
-    return this.http.get(API_URL + 'thietbi');
+  LayDsQuanLySubnet(): Observable<any> {
+    return this.http.get(API_URL + 'quanlysubnet');
   }
-  LayThietBi(id:any): Observable<any> {
-    return this.http.get(`${API_URL}thietbi/${id}`);
+  LayQuanLySubnet(id:any): Observable<any> {
+    return this.http.get(`${API_URL}quanlysubnet/${id}`);
   }
 }

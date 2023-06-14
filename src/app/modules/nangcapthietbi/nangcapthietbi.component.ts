@@ -23,7 +23,8 @@ export class NangcapthietbiComponent implements OnInit {
     private formBuilder: FormBuilder,
     private goiService: GoiService,
     private thietBiService: ThietbiService
-  ) {}
+  ) { }
+
 
   ngOnInit(): void {
     this.initializeForm();
@@ -51,16 +52,22 @@ export class NangcapthietbiComponent implements OnInit {
     });
   }
 
-  loadDeviceList(): void {
-    this.deviceList = this.thietBiService.layDsThietBi();
+  loadDeviceList() {
+    this.thietBiService.LayDsThietBi().subscribe((data) => {
+      this.deviceList = data;
+      console.log(this.deviceList)
+    });
+
   }
 
   showInfo(): void {
-      const selectedDevice = this.myForm.value.selectedDevice;
-      const selectedGoi = this.myForm.value.selectedGoi;
-      // Lấy thông tin thiết bị từ danh sách thiết bị dựa trên ID
-      this.device = this.deviceList.find(item => item.id === selectedDevice);
-      // Lấy thông tin gói nâng cấp từ danh sách gói nâng cấp dựa trên ID
-      this.goi = this.goiList.find(item => item.id === selectedGoi);
+    const selectedDevice = this.myForm.value.selectedDevice;
+    const selectedGoi = this.myForm.value.selectedGoi;
+    // Lấy thông tin thiết bị từ danh sách thiết bị dựa trên ID
+    this.device = this.deviceList.find(item => item.id === selectedDevice);
+    console.log(this.device)
+    // Lấy thông tin gói nâng cấp từ danh sách gói nâng cấp dựa trên ID
+    this.goi = this.goiList.find(item => item.id === selectedGoi);
+
   }
 }
