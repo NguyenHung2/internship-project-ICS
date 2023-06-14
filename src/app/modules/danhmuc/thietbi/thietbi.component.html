@@ -5,7 +5,7 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort >
+    <table mat-table [dataSource]="dataSource" matSort>
 
       <!-- ID Column -->
       <ng-container matColumnDef="id">
@@ -14,81 +14,54 @@
       </ng-container>
 
       <!-- Progress Column -->
-      <ng-container matColumnDef="userId">
+      <ng-container matColumnDef="ten">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.ten}} </td>
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="title">
+      <ng-container matColumnDef="serial">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Serial </th>
-        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.serial}} </td>
       </ng-container>
 
       <!-- Fruit Column -->
-      <ng-container matColumnDef="body">
+      <ng-container matColumnDef="mac">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Mac </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
-      </ng-container>
-
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="kinhDo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kinh độ </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
-      </ng-container>
-
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="viDo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vĩ độ </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
-      </ng-container>
-
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="donViHanhChinh">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị hành chính </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.mac}} </td>
       </ng-container>
 
       <!-- Fruit Column -->
       <ng-container matColumnDef="soDienThoai">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Số điện thoại </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.soDienThoai}} </td>
       </ng-container>
 
       <!-- Fruit Column -->
       <ng-container matColumnDef="soLoa">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Số loa </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
-      </ng-container>
-
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="ghiChu">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ghi chú </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.soLoa}} </td>
       </ng-container>
 
       <!-- Fruit Column -->
       <ng-container matColumnDef="activated">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Activated</th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.activated}} </td>
       </ng-container>
 
       <!-- Fruit Column -->
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete</th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.delete}} </td>
       </ng-container>
 
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="maModelThietBi">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã model thiết bị</th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
-      </ng-container>
-
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="maLoaiThietBi">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã loại thiết bị</th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" (click)="info(row.id)">
+            <mat-icon>info</mat-icon>
+          </button>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -36,7 +36,7 @@ export class NhatkyComponent {
   ];
   dataSource!: MatTableDataSource<NhatKyData>;
   dataExel: any;
-  namOptions: string[] = ['của tất cả năm'];
+  namOptions: string[] = ['của tất cả năm']; // Tên của file excel xuất  ra
   selectedYear: string = 'của tất cả năm';
   nameFile = 'Nhật ký nâng cấp';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -69,6 +69,7 @@ export class NhatkyComponent {
     });
   }
 
+  // excel theo năm
   filterByYear(year: string) {
     this.selectedYear = year;
     console.log(this.selectedYear);
@@ -100,6 +101,7 @@ export class NhatkyComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
   //đổi màu theo dòng
   getRowStyle(row: NhatKyData) {
     if (row.trangThai === 'THANH_CONG') {
@@ -110,6 +112,7 @@ export class NhatkyComponent {
       return {};
     }
   }
+  
   //hiển thị popup thông tin chi tiết
   info(id:any) {
     this.dialog.open(InfoComponent, {

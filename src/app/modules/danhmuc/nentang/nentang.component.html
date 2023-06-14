@@ -13,22 +13,22 @@
         <td mat-cell *matCellDef="let row"> {{row.id}} </td>
       </ng-container>
 
-      <!-- Progress Column -->
-      <ng-container matColumnDef="userId">
+      <!-- Tên Column -->
+      <ng-container matColumnDef="tenNenTang">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên nền tảng </th>
-        <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.tenNenTang}} </td>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="title">
+      <!-- Đơn vị sản xuất Column -->
+      <ng-container matColumnDef="donViSanXuat">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị sản xuất </th>
-        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.donViSanXuat}} </td>
       </ng-container>
 
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="body">
+      <!-- Phiên bản Column -->
+      <ng-container matColumnDef="phienBan">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Phiên bản </th>
-        <td mat-cell *matCellDef="let row"> {{row.body}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.phienBan}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

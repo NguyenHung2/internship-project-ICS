@@ -1,4 +1,3 @@
-//khanh29
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -13,7 +12,7 @@ export interface GoiNangCap {
   moTa: string;
   phienBan: string;
   nenTang: any;
-  nenTangId: number; 
+  nenTangId: number;
 }
 
 @Component({
@@ -41,6 +40,7 @@ export class QuanlygoiComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      console.log(this.dataSource);
     });
   }
 

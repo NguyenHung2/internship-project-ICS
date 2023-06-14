@@ -2,61 +2,27 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { TableService } from '../../table.service';
+import { TbChitietComponent } from './tb-chitiet/tb-chitiet.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ThietbiService } from 'src/app/data/_services/thietbi.service';
+import { HttpClient } from '@angular/common/http';
 
-export interface UserData {
-  id: string;
-  userId: string;
-  title: any;
-  body: any;
-  kinhDo: any;
-  viDo: any;
-  donViHanhChinh: any;
-  soDienThoai: any;
-  soLoa: any;
-  ghiChu: any;
-  activated: any;
-  delete: any;
-  maModelThietBi: any;
-  maLoaiThietBi: any;
+export interface thietBiData {
+  id: number;
+  ten: string;
+  serial: string;
+  mac: string;
+  kinhDo: string;
+  viDo: string;
+  donViHanhChinh: string;
+  soDienThoai: string;
+  soLoa: string;
+  ghiChu: string;
+  activated: string;
+  delete: string;
+  maModelThietBi: string;
+  maLoaiThietBi: string;
 }
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
-
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
 
 @Component({
   selector: 'app-thietbi',
@@ -64,28 +30,25 @@ const NAMES: string[] = [
   styleUrls: ['./thietbi.component.css']
 })
 export class ThietbiComponent {
-  displayedColumns: string[] = ['id', 'userId', 'title', 'body', 'kinhDo', 'viDo',
-    'donViHanhChinh', 'soDienThoai', 'soLoa', 'ghiChu', 'activated', 'delete',
-    'maModelThietBi', 'maLoaiThietBi'];
-  dataSource!: MatTableDataSource<UserData>;
-  posts: any;
+  displayedColumns: string[] = ['id', 'ten', 'serial', 'mac', 'soDienThoai', 'soLoa', 'activated', 'delete', 'action'];
+  dataSource!: MatTableDataSource<thietBiData>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private service: TableService) {
-    this.service.getData().subscribe((data) => {
-      console.log(data);
-      this.posts = data;
-      // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(this.posts);
+  constructor(
+    private http: HttpClient,
+    private thietBiService: ThietbiService,
+    private dialog: MatDialog
+  ) {
+    this.fetchThietBiData();
+  }
 
+  fetchThietBiData() {
+    this.thietBiService.LayDsThietBi().subscribe((data) => {
+      this.dataSource = new MatTableDataSource<thietBiData>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-    // Create 100 users
-    // const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-    // console.log(this.posts);
-    // console.log('users', users);
   }
 
   applyFilter(event: Event) {
@@ -96,30 +59,12 @@ export class ThietbiComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    userId: name,
-    title: Math.round(Math.random() * 100).toString(),
-    body: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-    kinhDo: name,
-    viDo: name,
-    donViHanhChinh: name,
-    soDienThoai: name,
-    soLoa: name,
-    ghiChu: name,
-    activated: name,
-    delete: name,
-    maModelThietBi: name,
-    maLoaiThietBi: name,
-  };
+  //hiển thị popup thông tin chi tiết
+  info(id: any) {
+    this.dialog.open(TbChitietComponent, {
+      width: '400px',
+      data: { id: id/* Truyền dữ liệu cần thiết vào đây */ },
+    });
+  }
 }
