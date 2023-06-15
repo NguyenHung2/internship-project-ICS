@@ -14,7 +14,6 @@ export interface GoiNangCap {
   nenTang: any;
   nenTangId: number;
 }
-
 @Component({
   selector: 'app-quanlygoi',
   templateUrl: './quanlygoi.component.html',
@@ -40,7 +39,6 @@ export class QuanlygoiComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource);
     });
   }
 
@@ -50,11 +48,11 @@ export class QuanlygoiComponent implements OnInit {
   }
 
   addGoi(){
-    this.Openpopup(0, 'Add Customer');
+    this.Openpopup(0, 'Thêm gói nâng cấp');
   }
 
   editGoi(id: any) {
-    this.Openpopup(id, 'Edit Customer');
+    this.Openpopup(id, 'Cập nhật gói nâng cấp');
   }
   Openpopup(id: any, title: any) {
     var _popup = this.dialog.open(PopupComponent, {

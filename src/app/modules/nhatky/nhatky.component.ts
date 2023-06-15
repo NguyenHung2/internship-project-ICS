@@ -68,7 +68,6 @@ export class NhatkyComponent {
       }
     });
   }
-
   // excel theo năm
   filterByYear(year: string) {
     this.selectedYear = year;
@@ -101,7 +100,6 @@ export class NhatkyComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-
   //đổi màu theo dòng
   getRowStyle(row: NhatKyData) {
     if (row.trangThai === 'THANH_CONG') {
@@ -112,7 +110,6 @@ export class NhatkyComponent {
       return {};
     }
   }
-  
   //hiển thị popup thông tin chi tiết
   info(id:any) {
     this.dialog.open(InfoComponent, {
@@ -124,6 +121,9 @@ export class NhatkyComponent {
   exportToExcel(): void {
     const element = document.getElementById('season-tble');
     const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    //gộp ô
+    worksheet['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 7 } }];
+    //custom style
     worksheet['A1'] = {
       t: 's',
       v: 'Nhật Ký Nâng Cấp',

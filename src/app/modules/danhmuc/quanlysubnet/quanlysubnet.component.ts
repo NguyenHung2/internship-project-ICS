@@ -12,12 +12,14 @@ export interface quanLySubnetData {
   moTa: string;
 }
 
+
 @Component({
   selector: 'app-quanlysubnet',
   templateUrl: './quanlysubnet.component.html',
   styleUrls: ['./quanlysubnet.component.css']
 })
 export class QuanlysubnetComponent {
+
   displayedColumns: string[] = ['id', 'diaChiIp', 'moTa'];
   dataSource!: MatTableDataSource<quanLySubnetData>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;

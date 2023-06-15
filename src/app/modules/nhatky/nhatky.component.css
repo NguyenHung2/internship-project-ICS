@@ -26,3 +26,16 @@ table {
   font-weight: bold;
 }
 
+.mat-mdc-table .mdc-data-table__header-row {
+  background-color: #6c6b68;
+}
+.mdc-data-table__header-cell {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.mdc-button{
+  height: 55px;
+  margin-bottom: 20px;
+}
+

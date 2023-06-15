@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import * as mapboxgl from 'mapbox-gl';
 import { ThietbiService } from 'src/app/data/_services/thietbi.service';
 import { thietBiData } from '../danhmuc/thietbi/thietbi.component';
-
+import MapboxLanguage from '@mapbox/mapbox-gl-language';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -21,16 +21,26 @@ export class MapComponent implements OnInit, AfterViewInit {
   addingLocation: boolean = false;
   buttonName: string = 'Add Location';
   address!: string;
+
   constructor(
     private http: HttpClient,
     private thietBiService: ThietbiService
   ) { }
+
+ /* iconUrl = '../../../assets/celltower.png'; // Thay đổi đường dẫn icon từ server ở đây
+
+  constructor(
+    private http: HttpClient,
+    private thietBiService: ThietbiService
+  ) {}*/
+
 
   ngOnInit() {
     mapboxgl!.accessToken =
       'pk.eyJ1IjoiYjE5MTA0ODAiLCJhIjoiY2xpaW12ZjJ5MXZ2ajNqczF4Y2NzYmNrdiJ9.DaXt-2gXJinZeoBDM63rAA';
     this.getLocations();
   }
+
   ngAfterViewInit() {
     this.map = new mapboxgl.Map({
       container: 'map',
@@ -44,7 +54,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       // Thay thế vị trí hiện tại vào center của bản đồ
       this.map.setCenter([longitude, latitude]);
     });
-    //tắt popup nếu không phải marker
+
+    // Tắt popup nếu không phải marker
     this.map.on('click', (event) => {
       const targetElement = event.originalEvent.target as HTMLElement;
       const isMarker = targetElement.closest('.mapboxgl-marker');
@@ -54,27 +65,14 @@ export class MapComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.map.on('load', () => {
-      this.map.addLayer({
-        id: 'tien-giang',
-        type: 'fill',
-        source: {
-          type: 'vector',
-          url: 'mapbox://mapbox.mapbox-streets-v8'
-        },
-        'source-layer': 'admin-2-boundaries-disputed',
-        paint: {
-          'fill-color': '#FF0000',
-          'fill-opacity': 0.5
-        },
-        filter: ['==', 'iso_3166_2', 'VN-46'] // Filter for Tiền Giang province
-      });
-    });
+
+    // Đổi ngôn ngữ bản đồ
+    this.map.addControl(new MapboxLanguage({
+      defaultLanguage: 'vi'
+    }));
   }
 
-
-
-  //lấy địa điểm từ server
+  // Lấy địa điểm từ server
   getLocations() {
     this.thietBiService.LayDsThietBi().subscribe((data) => {
       this.data = data;
@@ -83,7 +81,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
   }
 
-  //hiển thị lên bản đồ
+  // Hiển thị lên bản đồ
+
   displayLocationsOnMap() {
     this.data.forEach((data) => {
       if (data.kinhDo && data.viDo) {
@@ -103,23 +102,26 @@ export class MapComponent implements OnInit, AfterViewInit {
         })
           .setLngLat(coordinates)
           .addTo(this.map);
-
         // return element;
         marker.getElement()?.addEventListener('click', () => {
           this.removePopup();
           this.createPopupInfo(coordinates, data.ten, data.serial);
+
         });
       }
     });
   }
-  //tắt poppup
+
+  // Tắt popup
   removePopup() {
     if (this.popup) {
       this.popup.remove();
       this.popup = null;
     }
   }
-  //popup thông tin địa điểm
+
+  // Popup thông tin địa điểm
+
   createPopupInfo(coordinates: mapboxgl.LngLat, ten: string, serial: string) {
     this.removePopup();
 
@@ -136,14 +138,24 @@ export class MapComponent implements OnInit, AfterViewInit {
       .addTo(this.map);
   }
 
-  // Create a DOM element for each marker.
-  // createMarkerElement(): HTMLElement {
-  //   const element = document.createElement('div');
-  //   element.className = 'custom-marker';
-  //   element.style.backgroundImage = `url(${this.markerImage})`;
-  //   element.style.backgroundSize = 'cover';
-  //   element.style.width = '30px';
-  //   element.style.height = '30px';
-  //   return element;
-  // }
+  // Hàm lấy địa chỉ của vị trí
+  reverseGeocode(
+    longitude: number,
+    latitude: number,
+    callback: () => void
+  ): void {
+    // Gọi API reverse geocoding để lấy địa điểm từ tọa độ
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxgl.accessToken}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        // Lấy địa chỉ từ kết quả reverse geocoding
+        const place = data.features[0];
+        if (place && place.place_name) {
+          this.address = place.place_name;
+        }
+        callback();
+      });
+  }
+
 }

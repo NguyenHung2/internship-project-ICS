@@ -1,13 +1,13 @@
+
 <div class="container">
   <mat-form-field>
     <mat-label>Tìm kiếm</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung tìm kiếm ..." #input>
+
   </mat-form-field>
   <button class="btn"
   style="float: right;"
-  (click)="addGoi()"
-
->
+  (click)="addGoi()">
   <mat-icon class="btn-add-icon">add</mat-icon>
 </button>
   <div class="mat-elevation-z8">
@@ -56,24 +56,13 @@
           >
             <mat-icon class="btn-edit-icon">edit</mat-icon>
           </button>
-          <!-- <button
-
-            mat-raised-button
-            color="warn"
-          >
-            Delete
-          </button> -->
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
-      </tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
 </div>
+
