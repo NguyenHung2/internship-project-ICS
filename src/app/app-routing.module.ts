@@ -12,6 +12,7 @@ import { MainLayoutComponent } from './layouts/main_layout.component';
 import { LoginComponent } from './auth/login/login.component';
 
 import { LogoutComponent } from './auth/logout/logout.component';
+import { MapComponent } from './modules/map/map.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'quanlygoi', component: QuanlygoiComponent, data: { titulo: 'Quản lý gói' } },
       { path: 'nangcapthietbi', component: NangcapthietbiComponent, data: { titulo: 'Nâng cấp thiết bị' } },
       { path: 'nhatky', component: NhatkyComponent, data: { titulo: 'Nhật ký nâng cấp' } },
+      { path: 'bando', component: MapComponent, data: { titulo: 'Bản đồ thiết bị' } },
     ],
   },
   {

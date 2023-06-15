@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "mapbox-gl", "xlsx", "xlsx-js-style", "@mapbox/mapbox-gl-language"
+           ],
             "outputPath": "dist/angular-material-11",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,9 +30,12 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/mapbox-gl/dist/mapbox-gl.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/mapbox-gl/dist/mapbox-gl.js"
+            ]
           },
           "configurations": {
             "production": {

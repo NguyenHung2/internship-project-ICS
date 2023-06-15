@@ -35,3 +35,11 @@ table {
   font-weight: 700;
   color: #ffffff;
 }
+.mat-success {
+  background-color: green !important;
+  color: #fff;
+}
+.mat-edit {
+  background-color: #0099FF !important;
+  color: #fff;
+}

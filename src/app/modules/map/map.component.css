@@ -1,0 +1,15 @@
+#map {
+  height: 80vh;
+  width: 100%;
+}
+.popup-info.mapboxgl-popup {
+  display: none;
+}
+.custom-marker {
+  background-color: red;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+

@@ -19,19 +19,22 @@ export interface nenTangData {
   styleUrls: ['./nentang.component.css']
 })
 export class NentangComponent {
-  displayedColumns: string[] = ['id', 'userId', 'title', 'body'];
-  dataSource!: MatTableDataSource<UserData>;
-  posts: any;
+  displayedColumns: string[] = ['id', 'tenNenTang', 'donViSanXuat', 'phienBan'];
+  dataSource!: MatTableDataSource<nenTangData>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private service: TableService) {
-    this.service.getData().subscribe((data) => {
-      console.log(data);
-      this.posts = data;
-      // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(this.posts);
+  constructor(
+    private http: HttpClient,
+    private nenTangservice: NenTangService,
+    private dialog: MatDialog
+  ) {
+    this.fetchNenTangData();
+  }
 
+  fetchNenTangData() {
+    this.nenTangservice.LayDsNenTang().subscribe((data) => {
+      this.dataSource = new MatTableDataSource<nenTangData>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -46,4 +49,3 @@ export class NentangComponent {
     }
   }
 }
-

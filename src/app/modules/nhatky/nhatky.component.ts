@@ -121,6 +121,9 @@ export class NhatkyComponent {
   exportToExcel(): void {
     const element = document.getElementById('season-tble');
     const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    //gộp ô
+    worksheet['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 7 } }];
+    //custom style
     worksheet['A1'] = {
       t: 's',
       v: 'Nhật Ký Nâng Cấp',

@@ -6,6 +6,7 @@
 
 .card-container {
   display: flex;
+  justify-content: center;
 }
 
 mat-card {
@@ -16,13 +17,18 @@ mat-card {
 .form-container {
   padding: 16px;
   background-color: #ffffff;
+
 }
 
 .form-field {
+  display: flex;
   margin-bottom: 16px;
 }
 
 .detail-container {
   padding: 16px;
   background-color: #ffffff;
+}
+.mat-mdc-table .mdc-data-table__header-row {
+  background-color: #6c6b68;
 }

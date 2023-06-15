@@ -33,6 +33,7 @@ import { BackToTopComponent } from './layouts/back-to-top/back-to-top.component'
 import { ToastrModule } from 'ngx-toastr';
 import { InfoComponent } from './modules/nhatky/info/info.component';
 import { TbChitietComponent } from './modules/danhmuc/thietbi/tb-chitiet/tb-chitiet.component';
+import { MapComponent } from './modules/map/map.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { TbChitietComponent } from './modules/danhmuc/thietbi/tb-chitiet/tb-chit
     PopupComponent,
     BackToTopComponent,
     InfoComponent,
-    TbChitietComponent
+    TbChitietComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

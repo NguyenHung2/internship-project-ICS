@@ -12,7 +12,11 @@
             {{ year }}
           </mat-option>
         </mat-select>
+
       </mat-form-field>
+      <button (click)="exportToExcel()" mat-raised-button color="accent">
+        Xuất excel</button>
+
     </form>
     <table id="season-tble" class="table-none">
       <tr></tr>
@@ -39,9 +43,7 @@
     </table>
   </div>
   <div class="mat-elevation-z8">
-    <button (click)="exportToExcel()" mat-raised-button color="accent">
-      Export
-    </button>
+
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- ID Column -->
       <ng-container matColumnDef="stt">

@@ -22,7 +22,7 @@
               Vui lòng chọn gói nâng cấp
             </mat-error>
           </mat-form-field>
-
+          <br>
           <button mat-raised-button type="submit" color="primary">Nâng cấp</button>
         </form>
       </div>
@@ -33,12 +33,12 @@
       <div class="detail-container">
         <p><strong>Thông tin thiết bị:</strong></p>
         <p>Tên: {{ device?.ten }}</p>
-        <p>Địa chỉ: {{ device?.location }}</p>
-        <p>Số điện thoại: {{ device?.phone }}</p>
+        <p>Địa chỉ: {{ diachi}}</p>
+        <p>Số điện thoại: {{ device?.soDienThoai }}</p>
         <br>
         <p><strong>Thông tin gói nâng cấp:</strong></p>
         <p>Tên gói: {{ goi?.tenGoi }}</p>
-        <p>Nơi lưu: {{ goi?.noiLuu }}</p>
+        <p>Tên file: {{ goi?.noiLuu }}</p>
         <p>Mô tả: {{ goi?.moTa }}</p>
         <p>Phiên bản: {{ goi?.phienBan }}</p>
         <p>Nền tảng: {{ goi?.nenTang.tenNenTang }}</p>
