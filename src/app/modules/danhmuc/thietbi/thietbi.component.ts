@@ -30,7 +30,7 @@ export interface thietBiData {
   styleUrls: ['./thietbi.component.css']
 })
 export class ThietbiComponent {
-  displayedColumns: string[] = ['id', 'ten', 'serial', 'mac', 'soDienThoai', 'soLoa', 'activated', 'delete', 'action'];
+  displayedColumns: string[] = ['id', 'ten', 'serial', 'mac', 'soDienThoai', 'soLoa', 'action'];
   dataSource!: MatTableDataSource<thietBiData>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

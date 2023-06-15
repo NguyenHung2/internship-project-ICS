@@ -1,28 +1,72 @@
 .container {
-  margin: 50px;
+  max-width: 1024px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.card-width {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card-content {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 30px;
+  width: 700px;
 }
 
-.card-container {
-  display: flex;
+.card {
+  width: 300px;
+  border: 1px solid #ccc;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-mat-card {
-  width: 40%;
-  margin: 0 16px;
+.content {
+  text-align: left;
+  margin-top: 15px;
 }
 
-.form-container {
-  padding: 16px;
-  background-color: #ffffff;
+.title {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.card-top {
+  align-items: center;
+  margin-top: 20px;
+  color: #4008DE;
+  border-radius: 10px;
+}
+
+.card-top mat-form-field {
+  margin-right: 20px;
+}
+
+.card-layout {
+  align-items: center;
+  top: -50px;
+  border: 1px solid #ccc;
+  margin: 10px 15px 0 15px;
+  max-width: 800px;
+  border-radius: 30px;
+  box-shadow: -5px 15px 5px 10px rgba(60, 60, 60, 0.2), -5px 0 5px -5px rgba(60, 60, 60, 0.3), -5px 0 5px -5px rgba(139, 139, 139, 0.4) !important;
 }
 
 .form-field {
   margin-bottom: 16px;
 }
 
-.detail-container {
-  padding: 16px;
-  background-color: #ffffff;
+@media screen and (max-width: 768px) {
+  .card-content {
+    max-width: 600px;
+  }
+
+  .card {
+    max-width: 330px;
+  }
 }

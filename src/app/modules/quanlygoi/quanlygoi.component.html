@@ -1,15 +1,14 @@
 <div class="container">
   <mat-form-field>
-    <mat-label>Filter Table</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+    <mat-label>Tìm kiếm</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung tìm kiếm ..." #input>
   </mat-form-field>
-  <button
+  <button class="btn"
   style="float: right;"
   (click)="addGoi()"
-  mat-raised-button
-  color="primary"
+
 >
-  Add(+)
+  <mat-icon class="btn-add-icon">add</mat-icon>
 </button>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -52,20 +51,18 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button
+          <button class="btn-edit"
             (click)="editGoi(element.id)"
-            mat-raised-button
-            color="primary"
           >
-            Edit
+            <mat-icon class="btn-edit-icon">edit</mat-icon>
           </button>
-          <button
+          <!-- <button
 
             mat-raised-button
             color="warn"
           >
             Delete
-          </button>
+          </button> -->
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
