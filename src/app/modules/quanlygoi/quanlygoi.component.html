@@ -1,0 +1,68 @@
+
+<div class="container">
+  <mat-form-field>
+    <mat-label>Tìm kiếm</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung tìm kiếm ..." #input>
+
+  </mat-form-field>
+  <button class="btn"
+  style="float: right;"
+  (click)="addGoi()">
+  <mat-icon class="btn-add-icon">add</mat-icon>
+</button>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- TenGoi Column -->
+      <ng-container matColumnDef="tenGoi">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên gói </th>
+        <td mat-cell *matCellDef="let row"> {{row.tenGoi}} </td>
+      </ng-container>
+
+      <!-- NoiLuu Column -->
+      <ng-container matColumnDef="noiLuu">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nơi lưu </th>
+        <td mat-cell *matCellDef="let row"> {{row.noiLuu}} </td>
+      </ng-container>
+
+      <!-- MoTa Column -->
+      <ng-container matColumnDef="moTa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mô tả </th>
+        <td mat-cell *matCellDef="let row"> {{row.moTa}} </td>
+      </ng-container>
+
+      <!-- PhienBan Column -->
+      <ng-container matColumnDef="phienBan">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phiên bản </th>
+        <td mat-cell *matCellDef="let row"> {{row.phienBan}} </td>
+      </ng-container>
+
+      <!-- NenTang Column -->
+      <ng-container matColumnDef="nenTang">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nền tảng </th>
+        <td mat-cell *matCellDef="let row"> {{row.nenTang.tenNenTang}} </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn-edit"
+            (click)="editGoi(element.id)"
+          >
+            <mat-icon class="btn-edit-icon">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>
+
