@@ -49,13 +49,9 @@ export class LoginComponent implements OnInit{
         if (err.status === 0) {
           this.errorMessage = "Lỗi server!";
           this.isLoginFailed = true;
-        } else if(err.error.message === "INVALID_USERNAME")
+        } else if(err.error.message === "INVALID_USERNAME" || err.error.message === "INVALID_PASSWORD")
         {
-          this.errorMessage = "Sai tên tài khoản!";
-          this.isLoginFailed = true;
-        }else if(err.error.message === "INVALID_PASSWORD")
-        {
-          this.errorMessage = "Sai mật khẩu!";
+          this.errorMessage = "Sai thông tin tài khoản hoặc mật khẩu!<br>Vui lòng kiểm tra lại!";
           this.isLoginFailed = true;
         }else{
           this.errorMessage = "Lỗi rồi!";

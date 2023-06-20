@@ -40,8 +40,7 @@
             Mật khẩu không được trống!
           </mat-error>
       </mat-form-field>
-      <p *ngIf="isLoginFailed" class="error">
-        {{ errorMessage }}
+      <p *ngIf="isLoginFailed" class="error" [innerHTML]="errorMessage">
       </p>
       <p>
         <div class="button">

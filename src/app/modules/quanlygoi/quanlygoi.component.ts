@@ -5,14 +5,17 @@ import { MatPaginator } from '@angular/material/paginator';
 import { GoiService } from '../../data/_services/goi.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './popup/popup.component';
+import { ChitietgoiComponent } from './chitietgoi/chitietgoi.component';
 export interface GoiNangCap {
   id: number;
   tenGoi: string;
   noiLuu: string;
+  tenFile: string;
   moTa: string;
   phienBan: string;
   nenTang: any;
   nenTangId: number;
+  dungLuong: string
 }
 @Component({
   selector: 'app-quanlygoi',
@@ -22,7 +25,7 @@ export interface GoiNangCap {
 export class QuanlygoiComponent implements OnInit {
 //khanh29
   dataSource!: MatTableDataSource<GoiNangCap>;
-  displayedColumns: string[] = ['id', 'tenGoi', 'noiLuu', 'moTa', 'phienBan', 'nenTang', 'action'];
+  displayedColumns: string[] = ['id', 'tenGoi', 'tenFile', 'moTa', 'phienBan', 'nenTang', 'action'];
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -54,6 +57,13 @@ export class QuanlygoiComponent implements OnInit {
   editGoi(id: any) {
     this.Openpopup(id, 'Cập nhật gói nâng cấp');
   }
+  infoGoi(id: any) {
+    this.dialog.open(ChitietgoiComponent, {
+      width: '400px',
+      data: {  id: id/* Truyền dữ liệu cần thiết vào đây */ },
+    });
+  }
+
   Openpopup(id: any, title: any) {
     var _popup = this.dialog.open(PopupComponent, {
       width: '40%',

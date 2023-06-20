@@ -36,6 +36,7 @@ import { TbChitietComponent } from './modules/danhmuc/thietbi/tb-chitiet/tb-chit
 import { MapComponent } from './modules/map/map.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { NewPasswordComponent } from './auth/new-password/new-password.component';
+import { ChitietgoiComponent } from './modules/quanlygoi/chitietgoi/chitietgoi.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { NewPasswordComponent } from './auth/new-password/new-password.component
     TbChitietComponent,
     MapComponent,
     ChangePasswordComponent,
-    NewPasswordComponent
+    NewPasswordComponent,
+    ChitietgoiComponent
   ],
   imports: [
     BrowserModule,

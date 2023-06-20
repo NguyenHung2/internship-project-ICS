@@ -5,10 +5,10 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung tìm kiếm ..." #input>
 
   </mat-form-field>
-  <button class="btn"
+  <button mat-icon-bu color="add"
   style="float: right;"
   (click)="addGoi()">
-  <mat-icon class="btn-add-icon">add</mat-icon>
+  <mat-icon>add</mat-icon>
 </button>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -26,9 +26,9 @@
       </ng-container>
 
       <!-- NoiLuu Column -->
-      <ng-container matColumnDef="noiLuu">
+      <ng-container matColumnDef="tenFile">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nơi lưu </th>
-        <td mat-cell *matCellDef="let row"> {{row.noiLuu}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.tenFile}} </td>
       </ng-container>
 
       <!-- MoTa Column -->
@@ -51,11 +51,16 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button class="btn-edit"
+          <button mat-icon-button color="accent"
             (click)="editGoi(element.id)"
           >
-            <mat-icon class="btn-edit-icon">edit</mat-icon>
+            <mat-icon>edit</mat-icon>
           </button>
+          <button mat-icon-button color="primary"
+          (click)="infoGoi(element.id)"
+        >
+          <mat-icon>info</mat-icon>
+        </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
