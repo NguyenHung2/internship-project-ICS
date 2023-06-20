@@ -36,10 +36,7 @@ export class AuthService {
       httpOptions
     );
   }
-  // hàm đăng xuất được gọi ở root component
-  logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', {}, httpOptions);
-  }
+
 
   changePassword(oldPassword: string, newPassword: string): Observable<any> {
     return this.http.post(

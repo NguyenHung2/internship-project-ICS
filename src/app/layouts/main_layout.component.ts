@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { StorageService } from '../data/_services/storage.service';
 
 
 @Component({
@@ -21,17 +22,22 @@ import { Router } from '@angular/router';
   `]
 })
 export class MainLayoutComponent {
+  //thêm kiểm tra token
   title = 'angularmaterial';
-  private roles: string[] = [];
   isLoggedIn = false;
   username?: string;
+
   eventBusSub?: Subscription;
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor(private storageService: StorageService, private router: Router) {}
+
   ngOnInit(): void {
+    this.isLoggedIn = this.storageService.isLoggedIn();
 
+    if (this.isLoggedIn) {
+        this.router.navigate(['/home']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
-
 }

@@ -4,12 +4,14 @@ import * as mapboxgl from 'mapbox-gl';
 import { ThietbiService } from 'src/app/data/_services/thietbi.service';
 import { thietBiData } from '../danhmuc/thietbi/thietbi.component';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
+import { WindyService } from 'src/app/data/_services/windy.service';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   map!: mapboxgl.Map;
   marker!: mapboxgl.Marker;
   markerImage = 'https://img.icons8.com/?size=512&id=lPhhD1Q9YkT2&format=png';
@@ -24,16 +26,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   constructor(
     private http: HttpClient,
-    private thietBiService: ThietbiService
+    private thietBiService: ThietbiService,
+    private windyApiService: WindyService
   ) { }
-
- /* iconUrl = '../../../assets/celltower.png'; // Thay đổi đường dẫn icon từ server ở đây
-
-  constructor(
-    private http: HttpClient,
-    private thietBiService: ThietbiService
-  ) {}*/
-
 
   ngOnInit() {
     mapboxgl!.accessToken =
@@ -59,12 +54,12 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map.on('click', (event) => {
       const targetElement = event.originalEvent.target as HTMLElement;
       const isMarker = targetElement.closest('.mapboxgl-marker');
-
+      const coordinates = event.lngLat;
+      this.getWeatherForecastAndAddToMap(coordinates);
       if (!isMarker) {
         this.removePopup();
       }
     });
-
 
     // Đổi ngôn ngữ bản đồ
     this.map.addControl(new MapboxLanguage({
@@ -72,16 +67,16 @@ export class MapComponent implements OnInit, AfterViewInit {
     }));
   }
 
-  // Lấy địa điểm từ server
+  ngOnDestroy() {
+    this.map.remove();
+  }
+
   getLocations() {
     this.thietBiService.LayDsThietBi().subscribe((data) => {
       this.data = data;
-      console.log(this.data);
       this.displayLocationsOnMap();
     });
   }
-
-  // Hiển thị lên bản đồ
 
   displayLocationsOnMap() {
     this.data.forEach((data) => {
@@ -102,17 +97,14 @@ export class MapComponent implements OnInit, AfterViewInit {
         })
           .setLngLat(coordinates)
           .addTo(this.map);
-        // return element;
         marker.getElement()?.addEventListener('click', () => {
           this.removePopup();
           this.createPopupInfo(coordinates, data.ten, data.serial);
-
         });
       }
     });
   }
 
-  // Tắt popup
   removePopup() {
     if (this.popup) {
       this.popup.remove();
@@ -120,41 +112,43 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // Popup thông tin địa điểm
-
   createPopupInfo(coordinates: mapboxgl.LngLat, ten: string, serial: string) {
     this.removePopup();
 
     this.popup = new mapboxgl.Popup({
-      // closeButton: false,
       closeOnClick: false,
       offset: 25
     })
       .setLngLat(coordinates)
       .setHTML(
         `<p>${ten}</p>
-      <p>${serial}</p>`
+        <p>${serial}</p>`
       )
       .addTo(this.map);
   }
 
-  // Hàm lấy địa chỉ của vị trí
-  reverseGeocode(
-    longitude: number,
-    latitude: number,
-    callback: () => void
-  ): void {
-    // Gọi API reverse geocoding để lấy địa điểm từ tọa độ
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxgl.accessToken}`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        // Lấy địa chỉ từ kết quả reverse geocoding
-        const place = data.features[0];
-        if (place && place.place_name) {
-          this.address = place.place_name;
-        }
-        callback();
+  getWeatherForecastAndAddToMap(coordinates: mapboxgl.LngLat) {
+    const latitude = coordinates.lat;
+    const longitude = coordinates.lng;
+
+    this.windyApiService.getMapForecast(latitude, longitude)
+      .subscribe(response => {
+        const windData = response.data.wind;
+        console.log(windData)
+        this.map.on('load', () => {
+          this.map.addLayer({
+            id: 'wind-layer',
+            type: 'raster',
+            source: {
+              type: 'raster',
+              tiles: windData.tiles,
+              tileSize: 256,
+            },
+            paint: {
+              'raster-opacity': 0.6
+            }
+          });
+        });
       });
   }
 
