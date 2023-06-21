@@ -2,8 +2,8 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { StorageService } from '../data/_services/storage.service';
-
 
 @Component({
   selector: 'app-main-layout',
@@ -25,9 +25,6 @@ export class MainLayoutComponent {
   //thêm kiểm tra token
   title = 'angularmaterial';
   isLoggedIn = false;
-  username?: string;
-
-  eventBusSub?: Subscription;
 
   constructor(private storageService: StorageService, private router: Router) {}
 
@@ -36,6 +33,6 @@ export class MainLayoutComponent {
 
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
-    } 
+    }
   }
 }
