@@ -14,7 +14,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "mapbox-gl", "xlsx", "xlsx-js-style", "@mapbox/mapbox-gl-language"
+              "mapbox-gl", "xlsx", "xlsx-js-style", "@mapbox/mapbox-gl-language",
+              "crypto-js"
            ],
             "outputPath": "dist/angular-material-11",
             "index": "src/index.html",

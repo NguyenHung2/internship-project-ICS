@@ -22,10 +22,10 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          window.sessionStorage.clear();
+          this.storageService.signOut();
           window.location.href = '/login';
         }
-        return throwError(error);
+        return throwError(()=> new Error("error"));
       })
     );
   }

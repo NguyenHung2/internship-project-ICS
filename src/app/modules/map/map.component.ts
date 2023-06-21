@@ -4,7 +4,6 @@ import * as mapboxgl from 'mapbox-gl';
 import { ThietbiService } from 'src/app/data/_services/thietbi.service';
 import { thietBiData } from '../danhmuc/thietbi/thietbi.component';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
-import { WindyService } from 'src/app/data/_services/windy.service';
 
 @Component({
   selector: 'app-map',
@@ -27,7 +26,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private http: HttpClient,
     private thietBiService: ThietbiService,
-    private windyApiService: WindyService
   ) { }
 
   ngOnInit() {
@@ -54,8 +52,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map.on('click', (event) => {
       const targetElement = event.originalEvent.target as HTMLElement;
       const isMarker = targetElement.closest('.mapboxgl-marker');
-      const coordinates = event.lngLat;
-      this.getWeatherForecastAndAddToMap(coordinates);
       if (!isMarker) {
         this.removePopup();
       }
@@ -127,29 +123,5 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       .addTo(this.map);
   }
 
-  getWeatherForecastAndAddToMap(coordinates: mapboxgl.LngLat) {
-    const latitude = coordinates.lat;
-    const longitude = coordinates.lng;
-
-    this.windyApiService.getMapForecast(latitude, longitude)
-      .subscribe(response => {
-        const windData = response.data.wind;
-        console.log(windData)
-        this.map.on('load', () => {
-          this.map.addLayer({
-            id: 'wind-layer',
-            type: 'raster',
-            source: {
-              type: 'raster',
-              tiles: windData.tiles,
-              tileSize: 256,
-            },
-            paint: {
-              'raster-opacity': 0.6
-            }
-          });
-        });
-      });
-  }
 
 }
