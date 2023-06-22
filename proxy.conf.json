@@ -1,0 +1,8 @@
+{
+  "/token": {
+    "target": "http://10.82.24.11:30141/realms/ics/protocol/openid-connect",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
