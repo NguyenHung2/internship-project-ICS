@@ -34,12 +34,6 @@ table {
   text-transform: uppercase;
 }
 
-.custom-row.mat-row {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiệu ứng box-shadow cho hàng */
-  border: 1px solid #ccc; /* Đường viền cho hàng */
-}
-
-
 @media screen and (max-width: 800px) {
   .mat-elevation-z8 {
     box-shadow: none;
@@ -111,8 +105,8 @@ table {
     background-color: #6c6b68;
   }
 
-  .custom-row.mat-row {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiệu ứng box-shadow cho hàng */
+  mat-row.custom-row {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border: 1px solid #ccc;
   }
 }
