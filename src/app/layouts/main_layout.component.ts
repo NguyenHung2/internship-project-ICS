@@ -30,9 +30,8 @@ export class MainLayoutComponent {
 
   ngOnInit(): void {
     this.isLoggedIn = this.storageService.isLoggedIn();
-
     if (!this.isLoggedIn) {
-      //this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     }
   }
 }

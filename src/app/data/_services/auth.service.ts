@@ -20,11 +20,12 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     const body = new HttpParams()
-      .set('grant_type', 'password')
+      .set('grant_type', 'client_credentials')
       .set('client_id', 'angular-pkce-client')
       .set('client_secret', 'XQMZDm3fLXWQQNzTL0QAZNzzMNdywu0T')
       .set('username', taikhoan)
-      .set('password', matkhau);
+      .set('password', matkhau)
+      //post by proxy "target": "http://10.82.24.11:30141/realms/ics/protocol/openid-connect"
     return this.http.post(
       '/token',
       body.toString(),
