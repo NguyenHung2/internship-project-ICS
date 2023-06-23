@@ -3,25 +3,22 @@ import { CookieService } from 'ngx-cookie-service';
 import * as CryptoJS from 'crypto-js';
 
 const USER_KEY = 'auth-user';
-const SECRET_KEY = 'fronend-duonghuukhanh-prolaydo';
+const SECRET_KEY = 'frontend-duonghuukhanh-prolaydo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
+
   constructor(private cookieService: CookieService) {}
 
   public saveUser(user: any): void {
-    const encryptedUser = this.encryptData(JSON.stringify(user));
     this.cookieService.delete(USER_KEY);
-    this.cookieService.set(USER_KEY, encryptedUser);
+    this.cookieService.set(USER_KEY, JSON.stringify(user), { expires: 7 });
   }
-
   public getUser(): any {
-    const encryptedUser = this.cookieService.get(USER_KEY);
-    if (encryptedUser) {
-      const decryptedUser = this.decryptData(encryptedUser);
-      const user = JSON.parse(decryptedUser);
+    if (this.cookieService.get(USER_KEY)) {
+      const user = JSON.parse(this.cookieService.get(USER_KEY));
       return user;
     }
     return {};
@@ -31,17 +28,7 @@ export class StorageService {
     return this.cookieService.check(USER_KEY);
   }
 
-  signOut(): void {
-    this.cookieService.deleteAll();
-  }
-
-  private encryptData(data: string): string {
-    const encryptedData = CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
-    return encryptedData;
-  }
-
-  private decryptData(encryptedData: string): string {
-    const decryptedData = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY).toString(CryptoJS.enc.Utf8);
-    return decryptedData;
+  public signOut(): void {
+    this.cookieService.delete(USER_KEY);
   }
 }

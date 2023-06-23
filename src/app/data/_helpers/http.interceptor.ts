@@ -14,18 +14,16 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
     const user = this.storageService.getUser();
-
     if (user != null) {
-       authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + user.accessToken)});
+      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + user.access_token) });
     }
-
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           this.storageService.signOut();
           window.location.href = '/login';
         }
-        return throwError(()=> new Error("error"));
+        return throwError(() => new Error('error'));
       })
     );
   }
