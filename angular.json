@@ -15,7 +15,7 @@
           "options": {
             "allowedCommonJsDependencies": [
               "mapbox-gl", "xlsx", "xlsx-js-style", "@mapbox/mapbox-gl-language",
-              "crypto-js", "base64-js", "js-sha256"
+             "crypto-js", "base64-js", "js-sha256"
            ],
             "outputPath": "dist/angular-material-11",
             "index": "src/index.html",

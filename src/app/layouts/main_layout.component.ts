@@ -25,7 +25,6 @@ export class MainLayoutComponent {
   //thêm kiểm tra token
   title = 'angularmaterial';
   isLoggedIn = false;
-
   constructor(private storageService: StorageService, private router: Router) {}
 
   ngOnInit(): void {

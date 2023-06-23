@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import * as CryptoJS from 'crypto-js';
-
 const USER_KEY = 'auth-user';
 const SECRET_KEY = 'frontend-duonghuukhanh-prolaydo';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-
   constructor(private cookieService: CookieService) {}
 
   public saveUser(user: any): void {

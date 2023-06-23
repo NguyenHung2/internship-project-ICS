@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NenTangService } from './nentang.service';
+import { WindyService } from './windy.service';
 
-describe('NentangService', () => {
-  let service: NenTangService;
+describe('WindyService', () => {
+  let service: WindyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NenTangService);
-
+    service = TestBed.inject(WindyService);
   });
 
   it('should be created', () => {

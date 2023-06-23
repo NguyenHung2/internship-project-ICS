@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/data/_services/auth.service';
@@ -10,7 +11,9 @@ import { KeycloakService } from 'keycloak-angular';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
+
 export class LoginComponent implements OnInit {
+
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -25,6 +28,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router,
+
     private toastr: ToastrService,
 
   ) { }
@@ -58,6 +62,7 @@ export class LoginComponent implements OnInit {
         //   this.isLoginFailed = true;
         //   this.errorMessage = err.error.message;
         // }
+
       }
     });
   }

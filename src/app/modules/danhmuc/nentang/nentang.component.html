@@ -5,35 +5,46 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" matSort class="custom-table">
 
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> STT </th>
+        <td mat-cell *matCellDef="let row" class="data-cell">
+          <div class="column-header">STT</div>
+          <div class="column-value">{{ row.id }}</div>
+        </td>
       </ng-container>
 
-      <!-- Tên Column -->
+      <!-- Tên nền tảng Column -->
       <ng-container matColumnDef="tenNenTang">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên nền tảng </th>
-        <td mat-cell *matCellDef="let row"> {{row.tenNenTang}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Tên nền tảng </th>
+        <td mat-cell *matCellDef="let row" class="data-cell">
+          <div class="column-header">Tên nền tảng</div>
+          <div class="column-value">{{row.tenNenTang}}</div>
+        </td>
       </ng-container>
 
       <!-- Đơn vị sản xuất Column -->
       <ng-container matColumnDef="donViSanXuat">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Đơn vị sản xuất </th>
-        <td mat-cell *matCellDef="let row"> {{row.donViSanXuat}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Đơn vị sản xuất </th>
+        <td mat-cell *matCellDef="let row" class="data-cell">
+          <div class="column-header">Đơn vị sản xuất</div>
+          <div class="column-value">{{row.donViSanXuat}}</div>
+        </td>
       </ng-container>
 
       <!-- Phiên bản Column -->
       <ng-container matColumnDef="phienBan">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phiên bản </th>
-        <td mat-cell *matCellDef="let row"> {{row.phienBan}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Phiên bản </th>
+        <td mat-cell *matCellDef="let row" class="data-cell">
+          <div class="column-header">Phiên bản</div>
+          <div class="column-value">{{row.phienBan}}</div>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>

@@ -123,5 +123,4 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       .addTo(this.map);
   }
 
-
 }

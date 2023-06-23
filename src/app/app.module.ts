@@ -37,24 +37,6 @@ import { MapComponent } from './modules/map/map.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { NewPasswordComponent } from './auth/new-password/new-password.component';
 import { ChitietgoiComponent } from './modules/quanlygoi/chitietgoi/chitietgoi.component';
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { APP_INITIALIZER } from '@angular/core';
-
-// function initializeKeycloak(keycloak: KeycloakService) {
-//   return () =>
-//     keycloak.init({
-//       config: {
-//         url: 'http://10.82.24.11:30141/',
-//         realm: 'ics',
-//         clientId: 'angular-pkce-client'
-//       },
-//       initOptions: {
-//         onLoad: 'check-sso',
-//         silentCheckSsoRedirectUri:
-//           window.location.origin + '/src/assets/silent-check-sso.html'
-//       }
-//     });
-// }
 
 @NgModule({
   declarations: [
@@ -94,7 +76,6 @@ import { APP_INITIALIZER } from '@angular/core';
     ToastrModule.forRoot({
       timeOut: 1500 // Thiết lập thời gian hiển thị là 1,5 giây
     }),
-    KeycloakAngularModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
