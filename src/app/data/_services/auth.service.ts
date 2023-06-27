@@ -19,7 +19,7 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     const body = new HttpParams()
-      .set('grant_type', 'client_credentials')
+      .set('grant_type', 'password')
       .set('client_id', 'angular-pkce-client')
       .set('client_secret', 'XQMZDm3fLXWQQNzTL0QAZNzzMNdywu0T')
       .set('username', taikhoan)
@@ -36,18 +36,22 @@ export class AuthService {
       })
     );
   }
-  register(username: string, email: string, password: string): Observable<any> {
+  refreshAccessToken(refreshToken: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    const body = new HttpParams()
+      .set('grant_type', 'refresh_token')
+      .set('client_id', 'angular-pkce-client')
+      .set('client_secret', 'XQMZDm3fLXWQQNzTL0QAZNzzMNdywu0T')
+      .set('refresh_token', refreshToken);
+
     return this.http.post(
-      AUTH_API + 'signup',
-      {
-        username,
-        email,
-        password,
-      },
-      httpOptions
+      '/token',
+      body.toString(),
+      { headers: headers }
     );
   }
-
 
   changePassword(oldPassword: string, newPassword: string): Observable<any> {
     return this.http.post(

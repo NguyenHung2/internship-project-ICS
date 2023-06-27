@@ -36,7 +36,6 @@ export class NewPasswordComponent implements OnInit {
     const { password, newPassword } = this.form;
     this.authService.changePassword(password, newPassword).subscribe({
       next: data => {
-        this.storageService.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.router.navigate(['/home'])

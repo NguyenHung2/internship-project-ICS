@@ -20,7 +20,6 @@ export class LogoutComponent {
   }
   accept() {
     this.storageService.signOut();
-    this.router.navigate(['/login']);
     this.toastr.success("Bạn đã đăng xuất!")
   }
 }

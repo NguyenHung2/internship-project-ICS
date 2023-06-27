@@ -16,7 +16,10 @@ table {
   border-collapse: separate;
   border-spacing: 0;
 }
-
+.mat-add{
+  background-color: green;
+  color:white;
+}
 .mat-mdc-table .mdc-data-table__header-row {
   background-color: #6c6b68;
 }
@@ -104,4 +107,3 @@ table {
   }
 
 }
-

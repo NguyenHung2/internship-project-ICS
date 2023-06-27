@@ -71,7 +71,6 @@ export class NhatkyComponent {
   // excel theo năm
   filterByYear(year: string) {
     this.selectedYear = year;
-    console.log(this.selectedYear);
     if (this.selectedYear === 'của tất cả năm') {
       this.dataSource.filter = '';
     } else {
@@ -134,7 +133,6 @@ export class NhatkyComponent {
       const cell = XLSX.utils.encode_cell({ r: 1, c: col });
       worksheet[cell].s = { font: { bold: true } };
     }
-
     const columnWidths = [
       { wch: 5 }, // A
       { wch: 15 }, // B

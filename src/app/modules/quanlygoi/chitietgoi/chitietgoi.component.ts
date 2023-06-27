@@ -9,19 +9,26 @@ import { GoiService } from 'src/app/data/_services/goi.service';
   styleUrls: ['./chitietgoi.component.css']
 })
 export class ChitietgoiComponent {
-  goi: any
+  goi: any;
+  file: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<InfoComponent>,
     private goiService: GoiService
   ) {}
   ngOnInit(): void {
-    this.layNhatKy(this.data.id);
+    this.layGoi(this.data.id);
+    this.layThongTinFile(this.data.id)
   }
 
-  layNhatKy(id: any) {
+  layGoi(id: any) {
     this.goiService.LayGoi(id).subscribe((goiData) => {
       this.goi = goiData;
+    });
+  }
+  layThongTinFile(id: any){
+    this.goiService.ThongTinFile(id).subscribe((file) => {
+      this.file = file;
     });
   }
   closePopup() {

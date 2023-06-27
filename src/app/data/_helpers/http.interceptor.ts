@@ -1,29 +1,49 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 
 import { StorageService } from '../_services/storage.service';
-
-const TOKEN_HEADER_KEY = 'Authorization';
+import { AuthService } from '../_services/auth.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService, private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let authReq = req;
     const user = this.storageService.getUser();
     if (user != null) {
-      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + user.access_token) });
+      req = this.addTokenHeader(req, user.access_token);
     }
-    return next.handle(authReq).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          this.storageService.signOut();
-          window.location.href = '/login';
+    return next.handle(req).pipe(
+      catchError((error) => {
+        if (error.status === 401 && !req.url.includes('/token')) {
+          return this.handleUnauthorizedError(req, next);
         }
-        return throwError(() => new Error('error'));
+        return throwError(() => error);
+      })
+    );
+  }
+
+  private addTokenHeader(req: HttpRequest<any>, token: string): HttpRequest<any> {
+    return req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
+
+  private handleUnauthorizedError(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const user = this.storageService.getUser();
+    return this.authService.refreshAccessToken(user.refresh_token).pipe(
+      switchMap((response: any) => {
+        const newReq = this.addTokenHeader(req, response.access_token);
+        this.storageService.saveUser(response);
+        return next.handle(newReq);
+      }),
+      catchError((error: any) => {
+        this.storageService.signOut();
+        return throwError(() => error);
       })
     );
   }

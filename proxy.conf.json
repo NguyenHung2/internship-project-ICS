@@ -5,10 +5,11 @@
     "changeOrigin": true,
     "logLevel": "debug"
   },
-  "/api": {
-    "target": "http://localhost:8080",
+  "/api/*": {
+    "target": "http://192.168.234.55:8085",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false
   }
 }
+  

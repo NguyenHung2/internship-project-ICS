@@ -39,30 +39,25 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/home']);
     }
   }
-
+  
   submit() {
     const { username, password } = this.form;
     this.authService.login(username, password).subscribe({
       next: data => {
-        this.storageService.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.router.navigate(['/home']);
         this.toastr.success('Đăng nhập thành công');
       },
       error: err => {
-        // if (err.status === 0) {
-        //   this.errorMessage = 'Lỗi server!';
-        //   this.isLoginFailed = true;
-        // } else if (err.error.message === 'INVALID_USERNAME' || err.error.message === 'INVALID_PASSWORD') {
-        //   this.errorMessage = 'Sai thông tin tài khoản hoặc mật khẩu!<br>Vui lòng kiểm tra lại!';
-        //   this.isLoginFailed = true;
-        // } else {
-        //   this.errorMessage = 'Lỗi rồi!';
-        //   this.isLoginFailed = true;
-        //   this.errorMessage = err.error.message;
-        // }
-
+        if (err.status === 0) {
+          this.errorMessage = 'Lỗi server!';
+          this.isLoginFailed = true;
+        } else {
+          this.errorMessage = 'Sai thông tin tài khoản hoặc mật khẩu!<br>Vui lòng kiểm tra lại!';
+          this.isLoginFailed = true;
+        }
+        this.router.navigate(['/login']);
       }
     });
   }

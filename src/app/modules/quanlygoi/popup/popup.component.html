@@ -1,5 +1,5 @@
 <form [formGroup]="myform" (ngSubmit)="saveGoiNangCap()">
-  <h1 mat-dialog-title>{{ inputdata.title }}</h1>
+  <h1 mat-dialog-title>Thêm gói nâng cấp</h1>
   <div mat-dialog-content>
     <mat-form-field>
       <mat-label>Tên gói</mat-label>
@@ -9,20 +9,19 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Tên file</mat-label>
-      <div class="file-input-container">
-        <input type="text" formControlName="noiLuu" matInput readonly>
-        <button mat-icon-button color="primary" class="file-action-button" (click)="downloadFile()">
-          <mat-icon>cloud_download</mat-icon>
-        </button>
-        <input #fileInput type="file" class="file-input" (change)="uploadFile(fileInput)">
-        <button mat-icon-button color="primary" class="file-action-button" (click)="fileInput.click()">
-          <mat-icon>cloud_upload</mat-icon>
-        </button>
-      </div>
+      <mat-label>Nơi lưu</mat-label>
+      <input formControlName="noiLuu" matInput required>
       <mat-error *ngIf="formControls.noiLuu.errors?.['required'] && formControls.noiLuu.touched">
         Nơi lưu là bắt buộc
       </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <p>Chọn file*</p>
+      <div class="file-input-container">
+        <input formControlName="file" matInput readonly style="display: none;">
+        <input #fileInput type="file" (change)="uploadFile(fileInput)">
+      </div>
+      <p *ngIf="isFileRequiredError" class="error">File chưa được chọn</p>
     </mat-form-field>
 
     <mat-form-field>

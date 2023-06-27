@@ -2,7 +2,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ThietbiService } from 'src/app/data/_services/thietbi.service';
-import { thietBiData } from '../thietbi.component';
 
 
 @Component({
@@ -19,20 +18,16 @@ export class TbChitietComponent {
   ) { }
 
   ngOnInit(): void {
+
     this.layThietBi(this.data.id);
   }
 
   layThietBi(id: any) {
-    this.thietBiService.LayThietBi(id).subscribe((thietBiData) => {
-      this.thietbi = thietBiData;
+    this.thietBiService.LayDsThietBi().subscribe((thietBiData) => {
+      this.thietbi = thietBiData.find((x: { id: any; }) => x.id === id);
     });
   }
 
-  // layNhatKy(id: any) {
-  //   this.thietBiService.LayNhatKy(id).subscribe((nhatKyData) => {
-  //     this.thietbi = nhatKyData;
-  //   });
-  // }
   closePopup() {
     this.dialogRef.close();
   }

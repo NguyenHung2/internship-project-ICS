@@ -27,6 +27,8 @@ import { MatOptionModule } from '@angular/material/core';
 
 /** Back-to-top + MatIconModule + MatButtonModule*/
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 /** ================== */
 
 @NgModule({
@@ -53,8 +55,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatDialogModule,
     MatOptionModule,
     MatSelectModule,
-    ScrollingModule
-
+    ScrollingModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatToolbarModule,
@@ -77,7 +79,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatDialogModule,
     MatOptionModule,
     MatSelectModule,
-    ScrollingModule
+    ScrollingModule,
+    MatProgressSpinnerModule
 
   ]
 })

@@ -4,7 +4,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Nhập nội dung tìm kiếm ..." #input>
 
   </mat-form-field>
-  <button mat-icon-bu color="add" style="float: right; background: green; color: #ffffff; border: 1px solid#ccc; border-radius: 10px; padding: 3px;" (click)="addGoi()">
+  <button mat-icon-button color="add" style="float: right; " (click)="addGoi()">
     <mat-icon>add</mat-icon>
   </button>
   <div class="mat-elevation-z8">
@@ -13,9 +13,9 @@
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> STT </th>
-        <td mat-cell *matCellDef="let row" class="data-cell">
+        <td mat-cell *matCellDef="let row; let i = index" class="data-cell">
           <div class="column-header">STT</div>
-          <div class="column-value">{{ row.id }}</div>
+          <div class="column-value">{{ i + 1 }}</div>
         </td>
       </ng-container>
 
@@ -25,15 +25,6 @@
         <td mat-cell *matCellDef="let row" class="data-cell">
           <div class="column-header">Tên gói</div>
           <div class="column-value">{{ row.tenGoi }}</div>
-        </td>
-      </ng-container>
-
-      <!-- Nơi lưu Column -->
-      <ng-container matColumnDef="tenFile">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Nơi lưu </th>
-        <td mat-cell *matCellDef="let row" class="data-cell">
-          <div class="column-header">Nơi lưu</div>
-          <div class="column-value">{{ row.tenFile }}</div>
         </td>
       </ng-container>
 
@@ -60,7 +51,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Nền tảng </th>
         <td mat-cell *matCellDef="let row" class="data-cell">
           <div class="column-header">Nền tảng</div>
-          <div class="column-value">{{ row.tenNenTang }}</div>
+          <div class="column-value">{{ row.nenTang.tenNenTang}}</div>
         </td>
       </ng-container>
       <ng-container matColumnDef="action">
@@ -68,18 +59,17 @@
         <td mat-cell *matCellDef="let element" class="data-cell">
           <div class="column-header">Thao tác</div>
           <div class="column-value">
-            <button mat-icon-button color="accent" (click)="editGoi(element.id)">
-              <mat-icon>edit</mat-icon>
-            </button>
             <button mat-icon-button color="primary" (click)="infoGoi(element.id)">
               <mat-icon>info</mat-icon>
             </button>
+            <a mat-icon-button color="primary" [href]="getDownloadUrl(element.id)">
+              <mat-icon>download</mat-icon>
+            </a>
           </div>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
-
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>

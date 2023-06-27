@@ -10,9 +10,9 @@
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> STT </th>
-        <td mat-cell *matCellDef="let row" class="data-cell">
+        <td mat-cell *matCellDef="let row; let i = index" class="data-cell">
           <div class="column-header">STT</div>
-          <div class="column-value">{{ row.id }}</div>
+          <div class="column-value">{{ i + 1 }}</div>
         </td>
       </ng-container>
 

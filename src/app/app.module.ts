@@ -26,8 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BreadcrumbsComponent } from './layouts/breadcrumbs/breadcrumbs.component';
 
-import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
-
 import { BackToTopComponent } from './layouts/back-to-top/back-to-top.component';
 //thông báo
 import { ToastrModule } from 'ngx-toastr';
@@ -37,6 +35,7 @@ import { MapComponent } from './modules/map/map.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { NewPasswordComponent } from './auth/new-password/new-password.component';
 import { ChitietgoiComponent } from './modules/quanlygoi/chitietgoi/chitietgoi.component';
+import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +48,7 @@ import { ChitietgoiComponent } from './modules/quanlygoi/chitietgoi/chitietgoi.c
     NentangComponent,
     QuanlysubnetComponent,
     QuanlygoiComponent,
+    PopupComponent,
     NangcapthietbiComponent,
     NhatkyComponent,
     HomeComponent,
@@ -56,7 +56,6 @@ import { ChitietgoiComponent } from './modules/quanlygoi/chitietgoi/chitietgoi.c
     MainLayoutComponent,
     LogoutComponent,
     BreadcrumbsComponent,
-    PopupComponent,
     BackToTopComponent,
     InfoComponent,
     TbChitietComponent,

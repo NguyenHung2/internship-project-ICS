@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { API_URL } from './config';
-
+const url = 'api/goi-nang-cap'
 @Injectable({
   providedIn: 'root'
 })
 export class KhachhangService {
   constructor(private http: HttpClient) { }
   LayDsKhachHang(): Observable<any> {
-    return this.http.get(API_URL + 'khachhang');
+    return this.http.get(url + 'khachhang');
   }
   LayKhachHang(id: any): Observable<any> {
-    return this.http.get(`${API_URL}khachhang/${id}`);
+    return this.http.get(`${url}khachhang/${id}`);
   }
 }

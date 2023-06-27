@@ -2,11 +2,12 @@
 
 <div mat-dialog-content>
   <p><strong>Tên gói:</strong> {{ goi?.tenGoi }}</p>
-  <p><strong>Tên file:</strong> {{ goi?.tenFile }}</p>
-  <p><strong>Dung lượng:</strong> {{ goi?.dungLuong }}</p>
+  <p><strong>Tên file:</strong> {{ file?.filename }}</p>
+  <p><strong>Dung lượng:</strong> {{ file?.size }}</p>
+  <p><strong>Nơi lưu:</strong>  {{ goi?.noiLuu  }}</p>
   <p><strong>Mô tả:</strong>  {{ goi?.moTa  }}</p>
   <p><strong>Phiên bản:</strong>  {{ goi?.phienBan }}</p>
-  <p><strong>Nền tảng:</strong> {{ goi?.nenTang }}</p>
+  <p><strong>Nền tảng:</strong> {{ goi?.nenTang.tenNenTang }}</p>
 
 </div>
 <div mat-dialog-actions>

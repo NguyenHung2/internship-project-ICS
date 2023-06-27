@@ -4,8 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { GoiService } from '../../data/_services/goi.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PopupComponent } from './popup/popup.component';
 import { ChitietgoiComponent } from './chitietgoi/chitietgoi.component';
+import { HttpClient } from '@angular/common/http';
+import { PopupComponent } from './popup/popup.component';
 export interface GoiNangCap {
   id: number;
   tenGoi: string;
@@ -15,23 +16,32 @@ export interface GoiNangCap {
   phienBan: string;
   nenTang: any;
   nenTangId: number;
-  dungLuong: string
+  dungLuong: string;
 }
 @Component({
   selector: 'app-quanlygoi',
   templateUrl: './quanlygoi.component.html',
-  styleUrls: ['./quanlygoi.component.css']
+  styleUrls: ['./quanlygoi.component.css'],
 })
 export class QuanlygoiComponent implements OnInit {
-//khanh29
   dataSource!: MatTableDataSource<GoiNangCap>;
-  displayedColumns: string[] = ['id', 'tenGoi', 'tenFile', 'moTa', 'phienBan', 'nenTang', 'action'];
+  displayedColumns: string[] = [
+    'id',
+    'tenGoi',
+    'moTa',
+    'phienBan',
+    'nenTang',
+    'action',
+  ];
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private goiService: GoiService,
-    private dialog: MatDialog) { }
+  constructor(
+    private goiService: GoiService,
+    private dialog: MatDialog,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.fetchGoiNangCap();
@@ -50,20 +60,15 @@ export class QuanlygoiComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  addGoi(){
-    this.Openpopup(0, 'Thêm gói nâng cấp');
-  }
-
-  editGoi(id: any) {
-    this.Openpopup(id, 'Cập nhật gói nâng cấp');
-  }
   infoGoi(id: any) {
     this.dialog.open(ChitietgoiComponent, {
       width: '400px',
-      data: {  id: id/* Truyền dữ liệu cần thiết vào đây */ },
+      data: { id: id /* Truyền dữ liệu cần thiết vào đây */ },
     });
   }
-
+  addGoi() {
+    this.Openpopup(0, 'Thêm gói nâng cấp');
+  }
   Openpopup(id: any, title: any) {
     var _popup = this.dialog.open(PopupComponent, {
       width: '40%',
@@ -71,12 +76,15 @@ export class QuanlygoiComponent implements OnInit {
       exitAnimationDuration: '300ms',
       data: {
         title: title,
-        id: id
-      }
+        id: id,
+      },
     });
-    _popup.afterClosed().subscribe(item => {
+    _popup.afterClosed().subscribe((item) => {
       // console.log(item)
       this.fetchGoiNangCap();
-    })
+    });
+  }
+  getDownloadUrl(id: any): string {
+    return this.goiService.TaiGoi(id);
   }
 }

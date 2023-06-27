@@ -17,3 +17,9 @@ mat-card{
 button{
     margin: 2px;
 }
+.error {
+  padding: 7px;
+  width: 330px;
+  color: red;
+  font-size: 12px;
+}

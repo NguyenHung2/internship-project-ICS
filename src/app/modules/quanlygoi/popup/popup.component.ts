@@ -1,8 +1,9 @@
 import { NenTangService } from './../../../data/_services/nentang.service';
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { GoiService } from '../../../data/_services/goi.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-popup',
@@ -10,32 +11,23 @@ import { GoiService } from '../../../data/_services/goi.service';
   styleUrls: ['./popup.component.css']
 })
 export class PopupComponent implements OnInit {
-  inputdata: any;
-  editdata: any;
-  closemessage = 'closed using directive';
-  isEdit: boolean = false;
   nenTangList: any[] = [];
   selectedNenTang: any;
+  isFileRequiredError = false;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<PopupComponent>,
     private formBuilder: FormBuilder,
     private goiService: GoiService,
-    private nenTangService: NenTangService
+    private nenTangService: NenTangService,
+    private toastr: ToastrService
   ) {}
 
-  // Thêm một getter để dễ dàng truy cập các trường của form và kiểm tra trạng thái
   get formControls() {
     return this.myform.controls;
   }
 
   ngOnInit(): void {
-    this.inputdata = this.data?.title ? this.data : {};
-    if (this.inputdata.id > 0) {
-      this.isEdit = true;
-      this.setPopupData(this.inputdata.id);
-    }
     this.layDsNenTang();
   }
   layDsNenTang(){
@@ -43,21 +35,6 @@ export class PopupComponent implements OnInit {
       this.nenTangList = data; // Lưu danh sách Nền tảng vào biến nenTangList
     });
   }
-  setPopupData(id: any) {
-    this.goiService.LayGoi(id).subscribe(item => {
-      this.editdata = item;
-      this.myform.setValue({
-        tenGoi: this.editdata.tenGoi,
-        noiLuu: this.editdata.noiLuu,
-        moTa: this.editdata.moTa,
-        phienBan: this.editdata.phienBan,
-        nenTangId: this.editdata.nenTang.id
-      });
-      const nenTangId = this.editdata.nenTang.id;
-      this.selectedNenTang = nenTangId; // Gán giá trị cho selectedNenTang trực tiếp
-    });
-  }
-
 
   closePopup() {
     this.dialogRef.close('Closed using function');
@@ -68,34 +45,38 @@ export class PopupComponent implements OnInit {
     noiLuu: ['', Validators.required],
     moTa: ['', Validators.required],
     phienBan: ['', Validators.required],
-    nenTangId: ['', Validators.required]
+    nenTangId: ['', Validators.required],
+    file: [null as File | null]
   });
 
   saveGoiNangCap() {
-    // Kiểm tra tính hợp lệ của form
     if (this.myform.valid) {
-
-      if (this.isEdit) {
-        this.goiService.SuaGoi(this.inputdata.id, this.myform.value).subscribe(() => {
+      const formData = new FormData();
+      formData.append('tenGoi', this.myform.value.tenGoi as string);
+      formData.append('noiLuu', this.myform.value.noiLuu as string);
+      formData.append('moTa', this.myform.value.moTa as string);
+      formData.append('phienBan', this.myform.value.phienBan as string);
+      formData.append('nenTangId', this.myform.value.nenTangId as string);
+      const file = this.myform.get('file')!.value;
+      if (file) {
+        formData.append('file', file);
+        this.isFileRequiredError = false;
+        this.goiService.ThemGoi(formData).subscribe(() => {
           this.closePopup();
+          this.toastr.success("Thêm gói nâng cấp thành công!")
         });
       } else {
-        this.goiService.ThemGoi(this.myform.value).subscribe(() => {
-          this.closePopup();
-        });
+        this.isFileRequiredError = true;
       }
     } else {
-      // Đánh dấu tất cả các trường là đã chạm (touched) để hiển thị lỗi
       this.myform.markAllAsTouched();
     }
   }
 
-  downloadFile() {
-    // Logic để tải xuống tệp tin
-  }
-
   uploadFile(fileInput: HTMLInputElement) {
-    const file = fileInput.files![0];
-    // Logic để tải lên tệp tin
+    const file: File | null = fileInput.files![0];
+    if (file) {
+      this.myform.patchValue({ file });
+    }
   }
 }

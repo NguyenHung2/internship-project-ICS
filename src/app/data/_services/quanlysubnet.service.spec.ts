@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QuanlysubnetService } from './quanlysubnet.service';
+import { QuanLySubnetService } from './quanlysubnet.service';
 
 describe('QuanlysubnetService', () => {
-  let service: QuanlysubnetService;
+  let service: QuanLySubnetService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(QuanlysubnetService);
+    service = TestBed.inject(QuanLySubnetService);
   });
 
   it('should be created', () => {
