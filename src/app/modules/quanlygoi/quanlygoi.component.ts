@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { GoiService } from '../../data/_services/goi.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ChitietgoiComponent } from './chitietgoi/chitietgoi.component';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { PopupComponent } from './popup/popup.component';
 export interface GoiNangCap {
   id: number;
@@ -37,7 +37,6 @@ export class QuanlygoiComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   isLoading: boolean = false;
-  downloadProgress: number = 0;
   constructor(
     private goiService: GoiService,
     private dialog: MatDialog,
@@ -105,22 +104,14 @@ export class QuanlygoiComponent implements OnInit {
   async getDownloadUrl(id: any): Promise<void> {
     await this.layThongTinFile(id);
     this.isLoading = true;
-    this.goiService.TaiGoi(id).subscribe((event: any) => {
-      if (event.type === HttpEventType.DownloadProgress) {
-        const loaded = event.loaded || 0;
-        const total = event.total || 0;
-        this.downloadProgress = Math.round((loaded / total) * 100);
-      } else if (event.type === HttpEventType.Response) {
-        const data: Blob = event.body;
-        const downloadLink = document.createElement('a');
-        const file = new Blob([data], { type: 'application/octet-stream' });
-        const fileURL = URL.createObjectURL(file);
-        downloadLink.href = fileURL;
-        downloadLink.download = this.file.filename;
-        downloadLink.click();
-        this.downloadProgress = 0; // Đặt lại tỷ lệ phần trăm sau khi tải xong
-        this.isLoading = false;
-      }
+    this.goiService.TaiGoi(id).subscribe((data: Blob) => {
+      const downloadLink = document.createElement('a');
+      const file = new Blob([data], { type: 'application/octet-stream' });
+      const fileURL = URL.createObjectURL(file);
+      downloadLink.href = fileURL;
+      downloadLink.download = this.file.filename;
+      downloadLink.click();
+      this.isLoading = false;
     });
   }
 }

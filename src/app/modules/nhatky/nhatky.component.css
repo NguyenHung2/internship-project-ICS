@@ -95,13 +95,13 @@ table {
     height: 0px;
   }
 
-  /* .mdc-data-table__cell {
+  .mdc-data-table__cell {
     background: #ffffff;
-  } */
+  }
 
-  /* .mdc-data-table__cell:nth-child(7) {
+  .mdc-data-table__cell:nth-child(7) {
     margin: 0 0 10px 0;
-  } */
+  }
 
 
   /* .mat-mdc-row {

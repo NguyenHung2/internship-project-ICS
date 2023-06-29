@@ -12,7 +12,9 @@ import { StorageService } from 'src/app/data/_services/storage.service';
 })
 export class ChangepassComponent {
   invalidPass =false;
+  invalidPassOld =false;
   userId: string='';
+  username: string='';
   token: string='';
   constructor(
     private dialogRef: MatDialogRef<ChangepassComponent>,
@@ -23,11 +25,15 @@ export class ChangepassComponent {
   ) {}
   showMatKhauMoi: boolean = false;
   showXnMatKhau: boolean = false;
+  showMatKhauCu: boolean = false;
   toggleMatKhauMoi() {
     this.showMatKhauMoi = !this.showMatKhauMoi;
   }
   toggleXnMatKhau() {
     this.showXnMatKhau = !this.showXnMatKhau;
+  }
+  toggleMatKhauCu() {
+    this.showMatKhauCu = !this.showMatKhauCu;
   }
   get formControls() {
     return this.myform.controls;
@@ -39,6 +45,7 @@ export class ChangepassComponent {
     this.auth.getUserInfo(this.token).subscribe({
       next: data => {
         this.userId = data.sub
+        this.username = data.preferred_username
       },
       error: err => {
         console.log(err)
@@ -51,6 +58,7 @@ export class ChangepassComponent {
   }
 
   myform = this.formBuilder.group({
+    matKhauCu: ['', Validators.required],
     matKhauMoi: ['', Validators.required],
     xnMatKhau: ['', Validators.required],
   });
@@ -60,15 +68,24 @@ export class ChangepassComponent {
       if (this.myform.value.matKhauMoi !== this.myform.value.xnMatKhau) {
         this.invalidPass = true;
       } else {
-        this.auth.resetPassword(this.userId, this.myform.value.matKhauMoi as string, this.token ).subscribe({
+        this.auth.login(this.username, this.myform.value.matKhauCu as string).subscribe({
           next: data => {
-            this.toastr.success("Đổi mật khẩu thành công")
-            this.closePopup()
+            this.auth.resetPassword(this.userId, this.myform.value.matKhauMoi as string, this.token ).subscribe({
+              next: data => {
+                this.toastr.success("Đổi mật khẩu thành công")
+                this.closePopup()
+              },
+              error: err => {
+                console.log(err)
+              }
+            });
           },
           error: err => {
+            this.invalidPassOld=true;
             console.log(err)
           }
         });
+
       }
     } else {
       this.myform.markAllAsTouched();

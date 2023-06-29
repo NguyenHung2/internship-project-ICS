@@ -31,8 +31,8 @@ export class NhatkyComponent {
     'goiNangCap',
     'nguoiNangCap',
     'thoiDiemNangCap',
-    'trangThai',
     'lyDo',
+    'trangThai',
     'action',
   ];
   dataSource!: MatTableDataSource<NhatKyData>;
