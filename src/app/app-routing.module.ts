@@ -10,13 +10,8 @@ import { HomeComponent } from './modules/home/home.component';
 import { QuanlysubnetComponent } from './modules/danhmuc/quanlysubnet/quanlysubnet.component';
 import { MainLayoutComponent } from './layouts/main_layout.component';
 import { LoginComponent } from './auth/login/login.component';
-
 import { LogoutComponent } from './auth/logout/logout.component';
 import { MapComponent } from './modules/map/map.component';
-import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { NewPasswordComponent } from './auth/new-password/new-password.component';
-
-
 
 const routes: Routes = [
   {
@@ -43,16 +38,6 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
-
-  },
-  {
-    path: 'changePassword',
-    component: ChangePasswordComponent,
-
-  },
-  {
-    path: 'newPassword',
-    component: NewPasswordComponent,
 
   }
 ];

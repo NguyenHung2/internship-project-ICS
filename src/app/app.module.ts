@@ -32,10 +32,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { InfoComponent } from './modules/nhatky/info/info.component';
 import { TbChitietComponent } from './modules/danhmuc/thietbi/tb-chitiet/tb-chitiet.component';
 import { MapComponent } from './modules/map/map.component';
-import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { NewPasswordComponent } from './auth/new-password/new-password.component';
 import { ChitietgoiComponent } from './modules/quanlygoi/chitietgoi/chitietgoi.component';
 import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
+import { ChangepassComponent } from './auth/changepass/changepass.component';
 
 @NgModule({
   declarations: [
@@ -60,9 +59,8 @@ import { PopupComponent } from './modules/quanlygoi/popup/popup.component';
     InfoComponent,
     TbChitietComponent,
     MapComponent,
-    ChangePasswordComponent,
-    NewPasswordComponent,
-    ChitietgoiComponent
+    ChitietgoiComponent,
+    ChangepassComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,8 @@ export class GoiService {
   ThongTinFile(id: any) {
     return this.http.get(`${url}/${id}/info`);
   }
-  TaiGoi(id: any): string {
-    return `${url}/${id}/download`;
+  TaiGoi(id: any): Observable<any> {
+    return this.http.get(`${url}/${id}/download` , { responseType: 'blob' });
   }
+
 }

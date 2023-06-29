@@ -185,7 +185,10 @@ mat-accordion {
 mat-spinner {
   color:red;
 }
-
+.scrollable-options {
+  max-height: 200px;
+  overflow-y: auto;
+}
 @media (max-width: 800px) {
   .card-container {
     flex-wrap: wrap;

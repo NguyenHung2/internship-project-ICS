@@ -31,6 +31,7 @@ export class NhatkyComponent {
     'goiNangCap',
     'nguoiNangCap',
     'thoiDiemNangCap',
+    'trangThai',
     'lyDo',
     'action',
   ];
@@ -41,14 +42,16 @@ export class NhatkyComponent {
   nameFile = 'Nhật ký nâng cấp';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
+  isLoading: boolean = false;
   constructor(private http: HttpClient, private nhatKyService: NhatKyService,
     private dialog: MatDialog) {
     this.fetchNhatKyData();
   }
 
   fetchNhatKyData() {
+    this.isLoading = true;
     this.nhatKyService.LayDsNhatKy().subscribe((data) => {
+      this.isLoading = false;
       this.dataSource = new MatTableDataSource<NhatKyData>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -99,16 +102,7 @@ export class NhatkyComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  //đổi màu theo dòng
-  getRowStyle(row: NhatKyData) {
-    if (row.trangThai === 'THANH_CONG') {
-      return { 'background-color': '#98FB98' };
-    } else if (row.trangThai === 'THAT_BAI') {
-      return { 'background-color': '#FFF68F' };
-    } else {
-      return {};
-    }
-  }
+
   //hiển thị popup thông tin chi tiết
   info(id:any) {
     this.dialog.open(InfoComponent, {

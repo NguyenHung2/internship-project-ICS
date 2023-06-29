@@ -5,11 +5,17 @@
     "changeOrigin": true,
     "logLevel": "debug"
   },
-  "/api/*": {
+  "/userinfo": {
+    "target": "http://10.82.24.11:30141/realms/ics/protocol/openid-connect",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/api": {
     "target": "http://192.168.234.55:8085",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": false
+    "changeOrigin": true
   }
+
 }
-  

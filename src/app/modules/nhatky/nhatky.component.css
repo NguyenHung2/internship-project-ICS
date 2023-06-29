@@ -50,7 +50,12 @@ table {
   height: 55px;
   margin-bottom: 20px;
 }
-
+.mat-success{
+  color: green;
+}
+.mat-error{
+  color: rgb(244, 92, 92);
+}
 @media screen and (max-width: 800px) {
   .mat-elevation-z8 {
     box-shadow: none;
@@ -79,6 +84,7 @@ table {
     margin-left: 8px;
     flex-basis: 50%;
     font-weight: bold;
+
   }
 
   .custom-table .header-cell {
@@ -121,4 +127,5 @@ table {
   }
 
 }
+
 

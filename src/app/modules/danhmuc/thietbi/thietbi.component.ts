@@ -33,6 +33,7 @@ export interface thietBiData {
 export class ThietbiComponent {
   displayedColumns: string[] = ['id', 'ten', 'serial', 'mac', 'soDienThoai', 'soLoa', 'action'];
   dataSource!: MatTableDataSource<thietBiData>;
+  isLoading: boolean = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -45,7 +46,9 @@ export class ThietbiComponent {
   }
 
   fetchThietBiData() {
+    this.isLoading = true;
     this.thietBiService.LayDsThietBi().subscribe((data) => {
+      this.isLoading = false;
       this.dataSource = new MatTableDataSource<thietBiData>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

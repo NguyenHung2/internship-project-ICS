@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { StorageService } from './storage.service';
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
@@ -53,14 +53,21 @@ export class AuthService {
     );
   }
 
-  changePassword(oldPassword: string, newPassword: string): Observable<any> {
-    return this.http.post(
-      AUTH_API + 'changePassword',
-      {
-        oldPassword,
-        newPassword
-      },
-      httpOptions
-    );
+  getUserInfo(token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get('/userinfo', { headers });
   }
+  resetPassword(userId: string, newPassword: string, accessToken: string) {
+    const url = `http://10.82.24.11:30141/admin/realms/ics/users/${userId}/reset-password`;
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${accessToken}`)
+      .set('Content-Type', 'application/json');
+    const body = {
+      type: 'password',
+      temporary: false,
+      value: newPassword
+    };
+    return this.http.put(url, body, { headers });
+  }
+
 }

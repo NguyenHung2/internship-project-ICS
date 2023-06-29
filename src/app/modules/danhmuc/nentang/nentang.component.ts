@@ -23,7 +23,7 @@ export class NentangComponent {
   dataSource!: MatTableDataSource<nenTangData>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
+  isLoading: boolean = false;
   constructor(
     private http: HttpClient,
     private nenTangservice: NenTangService,
@@ -33,7 +33,9 @@ export class NentangComponent {
   }
 
   fetchNenTangData() {
+    this.isLoading = true;
     this.nenTangservice.LayDsNenTang().subscribe((data) => {
+      this.isLoading = false;
       this.dataSource = new MatTableDataSource<nenTangData>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

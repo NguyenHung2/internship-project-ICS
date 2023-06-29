@@ -21,6 +21,7 @@ export class InfoComponent {
   layNhatKy(id: any) {
     this.nhatKyService.LayNhatKy(id).subscribe((nhatKyData) => {
       this.nhatKy = nhatKyData;
+      console.log(nhatKyData)
     });
   }
   closePopup() {

@@ -7,9 +7,10 @@
   <button mat-icon-button color="add" style="float: right; " (click)="addGoi()">
     <mat-icon>add</mat-icon>
   </button>
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort class="custom-table">
 
+  <div class="mat-elevation-z8">
+    <mat-spinner *ngIf="isLoading" color="warn" diameter="20"></mat-spinner>
+    <table mat-table [dataSource]="dataSource" matSort class="custom-table">
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> STT </th>
@@ -62,9 +63,12 @@
             <button mat-icon-button color="primary" (click)="infoGoi(element.id)">
               <mat-icon>info</mat-icon>
             </button>
-            <a mat-icon-button color="primary" [href]="getDownloadUrl(element.id)">
+            <a mat-icon-button color="primary" (click)="getDownloadUrl(element.id)">
               <mat-icon>download</mat-icon>
             </a>
+            <div class="progress-bar" *ngIf="isLoading && downloadProgress > 0">
+              <div class="progress" [style.width.%]="downloadProgress"></div>
+            </div>
           </div>
         </td>
       </ng-container>

@@ -73,28 +73,23 @@ export class NangcapthietbiComponent implements OnInit {
   loadDeviceList() {
     this.thietBiService.LayDsThietBi().subscribe((data) => {
       this.deviceList = data;
-
-      console.log(this.deviceList);
     });
   }
 
   infoThietbi() {
-    const selectedDevice = this.myForm.value.selectedDevice;
-    // Lấy thông tin thiết bị từ danh sách thiết bị dựa trên ID
-    this.device = this.deviceList.find((item) => item.id === selectedDevice);
-    this.layDiaChi(
-      parseFloat(this.device!.kinhDo),
-      parseFloat(this.device!.viDo)
-    );
-
-    // Kiểm tra xem thiết bị đã được chọn có trong mảng selectedDevices chưa
-    const isDeviceSelected = this.selectedDevices.some(
-      (item) => item.id === selectedDevice
-    );
-
-    // Thêm thiết bị vào mảng selectedDevices
-    if (this.device && !isDeviceSelected) {
-      this.selectedDevices.push(this.device);
+    const selectedDevices = this.myForm.value.selectedDevice;
+    // Xóa các thiết bị không được chọn khỏi mảng selectedDevices
+    this.selectedDevices = this.selectedDevices.filter(device => selectedDevices.includes(device.id));
+    // Thêm các thiết bị được chọn vào mảng selectedDevices nếu chưa tồn tại
+    for (const deviceId of selectedDevices) {
+      const isDeviceSelected = this.selectedDevices.some(item => item.id === deviceId);
+      if (!isDeviceSelected) {
+        this.device = this.deviceList.find(item => item.id === deviceId);
+        if (this.device) {
+          this.selectedDevices.push(this.device);
+          this.layDiaChi(parseFloat(this.device!.kinhDo), parseFloat(this.device!.viDo));
+        }
+      }
     }
   }
 
@@ -122,6 +117,13 @@ export class NangcapthietbiComponent implements OnInit {
     const index = this.selectedDevices.indexOf(device);
     if (index !== -1) {
       this.selectedDevices.splice(index, 1);
+
+      // Xóa tùy chọn từ form control khi người dùng nhấn xóa
+      const selectedDeviceControl = this.myForm.get('selectedDevice');
+      if (selectedDeviceControl) {
+        const selectedDevices = selectedDeviceControl.value.filter((deviceId: number) => deviceId !== device.id);
+        selectedDeviceControl.setValue(selectedDevices);
+      }
     }
   }
 

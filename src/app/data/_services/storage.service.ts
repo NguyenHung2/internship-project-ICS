@@ -10,7 +10,6 @@ const SECRET_KEY = 'frontend-duonghuukhanh-prolaydo';
 })
 export class StorageService {
   constructor(private cookieService: CookieService, private router: Router) {}
-
   public saveUser(user: any): void {
     this.cookieService.deleteAll();
     const { access_token, refresh_token} = user;

@@ -8,10 +8,12 @@
           <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
             <mat-form-field class="form-field">
               <mat-label>Chọn thiết bị</mat-label>
-              <mat-select formControlName="selectedDevice" required>
-                <mat-option *ngFor="let device of deviceList" [value]="device.id">
-                  <div class="device-name">{{ device.ten }}</div>
-                </mat-option>
+              <mat-select formControlName="selectedDevice" required multiple>
+                <div class="scrollable-options">
+                  <mat-option *ngFor="let device of deviceList" [value]="device.id">
+                    <div class="device-name">{{ device.ten }}</div>
+                  </mat-option>
+                </div>
               </mat-select>
 
               <mat-error *ngIf="myForm.get('selectedDevice')?.errors?.['required'] && myForm.get('selectedDevice')?.touched">

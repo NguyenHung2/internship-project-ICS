@@ -5,6 +5,7 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
+    <mat-spinner *ngIf="isLoading" color="warn" diameter="20"></mat-spinner>
     <table mat-table [dataSource]="dataSource" matSort class="custom-table">
 
       <!-- ID Column -->
